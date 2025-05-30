@@ -1,10 +1,16 @@
 <template>
   <div class="login-container">
     <div class="login-card">
-      <img src="path/to/logo.png" alt="Logo" class="logo" />
-      <h2 class="title">Log in</h2>
+
+
+      <div class="top-logo">
+        <img src="/logo 1.png" alt="Logo" class="logo" />
+        <h2 class="title">Log in</h2>
+      </div>
+
       <p class="subtitle">Youth is 37% of South Africa, but 100% of its future</p>
 
+      <div class="input-container">
       <!-- Admin ID Input -->
       <div class="input-group">
         <i class="fas fa-user"></i>
@@ -26,6 +32,7 @@
           required
         />
       </div>
+      </div>
 
       <!-- Remember Me Checkbox -->
       <div class="remember-me">
@@ -43,3 +50,71 @@
 
 
 </script>
+
+<style>
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.title{
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.remember-me{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.subtitle{
+  margin-bottom: 2rem;
+}
+
+.login-container{
+  /* border: 1px solid blue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* gap: 6rem; */
+  height: 595px;
+  width: 440px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.login-button{
+  background: #6EC966;
+  width: 200px;
+  border-radius: 20px;
+  height: 46px;
+}
+
+.top-logo{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 6rem;
+}
+
+.input-group input{
+  width: 343px;
+  height: 51px;
+  /* border: 2px solid red; */
+  border-radius: 7px;
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+</style>
