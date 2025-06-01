@@ -13,10 +13,11 @@
       <div class="input-container">
       <!-- Admin ID Input -->
       <div class="input-group">
-        <i class="fas fa-user"></i>
+        <!-- <i class="fas fa-user"></i> -->
+        <img class="icon" src="/union-1.png" />
         <input
           type="text"
-          placeholder="Admin ID"
+          placeholder="             Admin ID"
           v-model="adminId"
           required
         />
@@ -24,10 +25,11 @@
 
       <!-- Password Input -->
       <div class="input-group">
-        <i class="fas fa-lock"></i>
+        <!-- <i class="fas fa-lock"></i> -->
+         <img class="icon" src="/Key.png" />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="             Password"
           v-model="password"
           required
         />
@@ -52,6 +54,7 @@
 </script>
 
 <style>
+/* keanan css */
 
 body{
   display: flex;
@@ -62,10 +65,22 @@ body{
   height: 100vh;
   width: 100%;
 }
+</style>
+
+
+<style scope>
+/* keanan css */
+
 
 .title{
   font-size: 30px;
   font-weight: 500;
+}
+
+.icon{
+  position: absolute;
+  padding: 12px;
+  min-width: 20px;
 }
 
 .remember-me{
@@ -95,6 +110,7 @@ body{
   width: 200px;
   border-radius: 20px;
   height: 46px;
+  cursor: pointer;
 }
 
 .top-logo{
@@ -109,6 +125,14 @@ body{
   height: 51px;
   /* border: 2px solid red; */
   border-radius: 7px;
+  
+}
+
+.input-group input::placeholder {
+  font-weight: 400;
+font-family: Poppins;
+color: #000;
+font-size: 16px;
 }
 
 .input-container{
