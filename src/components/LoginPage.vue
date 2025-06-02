@@ -50,8 +50,8 @@ export default {
   name: "LoginView",
   data() {
     return {
-      loginEmail: '',
-      loginPassword: '',
+      adminId: '',
+      password: '',
       rememberMe: false,
       errorMessage: '',
     };
