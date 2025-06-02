@@ -42,7 +42,7 @@
 </template>
 
 
-<script>
+<!-- <script>
 import axios from 'axios';
 import { mapActions } from 'vuex';
 
@@ -83,7 +83,7 @@ export default {
     },
   },
 };
-</script>
+</script> -->
 
 <style scoped>
 /* keanan css */
