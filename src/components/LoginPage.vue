@@ -4,11 +4,12 @@
 
 
       <div class="top-logo">
-        <img src="/logo 1.png" alt="Logo" class="logo" />
+        <img src="#" alt="Logo" class="logo" />
         <h2 class="title">Log in</h2>
       </div>
 
-      <p class="subtitle">Youth is 37% of South Africa, but 100% of its future</p>
+      <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      <!-- <p class="subtitle">Youth is 37% of South Africa, but 100% of its future</p> -->
 
       <div class="input-container">
       <!-- Admin ID Input -->
@@ -53,24 +54,24 @@
 
 </script>
 
-<style>
+<style scoped>
 /* keanan css */
 
-body{
+.login-container{
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   display: flex;
   justify-content: center;
+  margin: 70px auto;
+  flex-direction: column;
   align-items: center;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100%;
+  text-align: center;
+  color: #2c3e50;
+  height: 595px;
+  width: 440px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
 }
-</style>
-
-
-<style scope>
-/* keanan css */
-
 
 .title{
   font-size: 30px;
@@ -92,21 +93,8 @@ body{
   margin-bottom: 2rem;
 }
 
-.login-container{
-  /* border: 1px solid blue; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  /* gap: 6rem; */
-  height: 595px;
-  width: 440px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
 .login-button{
-  background: #6EC966;
+  /* background: #6EC966; */
   width: 200px;
   border-radius: 20px;
   height: 46px;
