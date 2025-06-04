@@ -242,7 +242,7 @@ body{
 
 <style scope>
    .dashboard-container{
-    border:2px solid red;
+    
     display: flex;
     justify-content: space-between;
     height: 100vh;
@@ -251,17 +251,45 @@ body{
    }
 
    .search-contain{
-    border:2px solid red;
     display: flex;
     justify-content: space-between;
     align-items:center ;
    }
 
-   .search-box{
-    width: 285px;
-    height: 33px;
-    margin-right: 20px;
-   }
+   .search-box {
+  position: absolute;
+  left: 1000px;
+  width: 300px;
+  height: 33px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  color: #4a4a4a;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  margin-right: -200px;
+  margin-top: -20px;
+}
+
+select {
+  position: absolute;
+  left: 1360px;
+  width: 120px;
+  height: 29px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  color: #4a4a4a;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  margin-right: -180px;
+  margin-top: -20px;
+
+}
 
    .metric-info{
     display: flex;
@@ -275,9 +303,11 @@ body{
    }
 
    .metric-num{
+    line-height: 32px;
     font-size: 32px;
     font-weight: 600;
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
+    color: #333;
    }
 
    .image-contain{
@@ -307,48 +337,58 @@ body{
 
    .metrics{
     display: flex;
-    border:2px solid purple;
     justify-content: space-around;
     gap: 2rem;
     background-color: #fff;
     width: 1250px;
+    height: 151px;
+    border-radius: 30px;
+    box-shadow: 0 10px 60px rgba(226, 236, 249, 0.5); 
+    padding: 16px 8px; 
    }
 
    .active-employees{
-    border:2px solid yellow;
     background-color: #fff;
-   }
+    width: 1250px;
+    height: 613px;
+    border-radius: 30px;
+    box-shadow: 0 10px 60px rgba(226, 236, 249, 0.5); 
+    padding: 16px 8px; 
+}
 
-   table{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    border: 2px solid red;
-   }
+   .active-employees table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #292D32;
+}
 
-   tr{
-    display: flex;
-    justify-content: space-around;
-    border: 2px solid green;
-    /* padding: 8px; */
-   }
+.active-employees th,
+.active-employees td {
+  padding: 12px 16px;
+  text-align: left; /* You can also use 'center' or 'right' per column */
+  vertical-align: middle;
+  border-bottom: 1px solid #e0e0e0;
+}
 
-   th{
-    text-align: center;
-    flex-grow: 1;
-   }
+.active-employees th {
+  font-weight: 600;
+  background-color: #fff;
+  color: #B5B7C0;
+}
 
-   td{
-    text-align: center;
-    flex-grow: 1;
-   }
+.active-employees h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 100%;     
+  letter-spacing: -0.01em; 
+  color: #333333;         
+    
+}
 
-   tr button{
-    width: 85px;
-    height: 30px;
-    border-radius: 4px;
-    cursor: pointer;
-   }
+
 
    button {
   font-size: 14px;
@@ -360,6 +400,8 @@ body{
   width: 86px;
   height: 29px;
   text-align: center;
+  gap: 10px;
+  
 }
 
 button.onsite {
@@ -379,7 +421,7 @@ button.offsite {
   justify-content: space-between;
   align-items: center;
   margin-top: 24px;
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   color: #b5b7c0; 
 }
