@@ -4,31 +4,53 @@
     
      <!-- Header Section -->
       <div class="side-bar">
-        <header>
+        <!-- <header> -->
             <div class="logo"><img src="/Logo.png" /></div>
-            <h2>Welcome Yandisa :wave:</h2>
-        </header>
+            
+           <div class="user-info">
+            <div></div>
+            <img src="/image.png" alt="User's Avatar">
+
+            <span>Tara Snell</span>
+            <span>Project Manager</span>
+
+        </div>
+
+        <!-- </header> -->
     </div>
 
     <!-- Dashboard Metrics Section -->
      <div class="main-board">
+        <h2>Welcome Tara 👋🏻</h2>
     <section class="metrics">
+         
         <div class="metric">
-            <img src="/Ellipse 3.png" alt="Employees">
+           
+             <div class="image-contain">
+            <img src="/Ellipse 3.png" alt="Inactive">
+                <img src="/profile-tick.png" class="overlay-image"/>
+            </div>
             <div class="metric-info">
             <span>Employees</span>
             <strong class="metric-num">5,423</strong>
             </div>
         </div>
         <div class="metric">
+            <div class="image-contain">
             <img src="/Ellipse 3.png" alt="Inactive">
+                <img src="/profile-2user.png" class="overlay-image"/>
+            </div>
              <div class="metric-info">
             <span>Inactive</span>
             <strong class="metric-num">1,893</strong>
             </div>
         </div>
         <div class="metric">
-            <img src="/Ellipse 3.png" alt="Active Now">
+            <div class="image-contain">
+                <img src="/Ellipse 3.png" alt="Active Now">
+                <img src="/monitor.png" class="overlay-image" />
+            </div>
+            
             <div class="metric-info">
             <span>Active Now</span>
             <strong class="metric-num">189</strong>
@@ -43,7 +65,7 @@
         <div class="search-contain">
         <h3>Active Employees</h3>
         <div class="search-bar">
-            <input type="text" placeholder="Search">
+            <input type="text" class="search-box" placeholder="Search">
             <select>
                 <option value="newest">Sort by: Onsite</option>
                 <option value="oldest">Sort by: Absent</option>
@@ -143,11 +165,7 @@
     </section>
     <!-- Footer Section -->
     <footer>
-        <div class="user-info">
-            <img src="" alt="User's Avatar">
-            <span>Yandisa Khumalo</span>
-            <span>Project Manager</span>
-        </div>
+        
         <div class="footer-slogan">
             Powered By Life Choices
         </div>
@@ -224,6 +242,7 @@ export default {
 body{
     margin: 0;
     padding: 0;
+    background: #FAFBFF;
 }
 
 </style>
@@ -232,8 +251,10 @@ body{
    .dashboard-container{
     border:2px solid red;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 100vh;
+    /* padding: 20px; */
+    gap: 3rem;
    }
 
    .search-contain{
@@ -241,6 +262,12 @@ body{
     display: flex;
     justify-content: space-between;
     align-items:center ;
+   }
+
+   .search-box{
+    width: 285px;
+    height: 33px;
+    margin-right: 20px;
    }
 
    .metric-info{
@@ -260,14 +287,29 @@ body{
     font-family: 'Poppins';
    }
 
+   .image-contain{
+    position: relative;
+    display: inline-block;
+   }
+
+   .overlay-image{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+   }
+
    .side-bar{
     border:2px solid blue;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
    }
    .main-board{
     border:2px solid green;
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
    }
 
    .metrics{
@@ -275,10 +317,44 @@ body{
     border:2px solid purple;
     justify-content: space-around;
     gap: 2rem;
+    background-color: #fff;
+    width: 1250px;
    }
 
    .active-employees{
     border:2px solid yellow;
+    background-color: #fff;
+   }
+
+   table{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 2px solid red;
+   }
+
+   tr{
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid green;
+    /* padding: 8px; */
+   }
+
+   th{
+    text-align: center;
+    flex-grow: 1;
+   }
+
+   td{
+    text-align: center;
+    flex-grow: 1;
+   }
+
+   tr button{
+    width: 85px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
    }
 
    .footer{
