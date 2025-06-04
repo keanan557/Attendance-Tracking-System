@@ -120,6 +120,7 @@ export default {
   align-items: center;
   text-align: center;
   color: #000000;
+  background-color: #ffffff;
   height: 595px;
   width: 440px;
   border-radius: 10px;
@@ -147,25 +148,54 @@ export default {
 }
 
 .login-button {
-  background: #0f4392;
+  background: #0F4392;
   width: 200px;
-  border-radius: 20px;
   height: 46px;
   cursor: pointer;
+  background-color: #0F4392;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-button :hover{
+  
 }
 
 .top-logo {
   display: flex;
   align-items: center;
-  justify-content: start;
-  gap: 6rem;
+  justify-content: center;
+  flex-direction: column;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
+.input-group .icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
 .input-group input {
   width: 343px;
   height: 51px;
   /* border: 2px solid red; */
   border-radius: 7px;
+  padding-left: 40px;
+  border: 2px solid #ccc;
+  font-size: 14px;
 }
 
 .input-group input::placeholder {
@@ -179,11 +209,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 4rem;
-}
-.logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
 }
 
 .remember-me label {
@@ -201,8 +226,10 @@ export default {
 }
 
 .forgot-password a {
+  color: #0F4392;
   font-size: 12px;
-  color: #0f4392;
+  display: inline-block;
+  margin-top: 8px;
   text-decoration: none;
 }
 </style>
