@@ -46,12 +46,12 @@
 </template>
 
 
-<!-- <script>
+<script>
 import axios from 'axios';
 import { mapActions } from 'vuex';
 
 export default {
-  name: "LoginView",
+  name: "LoginPage",
   data() {
     return {
       adminId: '',
@@ -61,20 +61,20 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['setToken', 'setUser']),
+    ...mapActions(['setToken', 'setStaff']),
     async handleLogin() {
       this.errorMessage = '';
       try {
-        const response = await axios.post("#", {
-          email: this.loginEmail,
-          password: this.loginPassword,
+        const response = await axios.post("http://localhost:3000/staff", {
+          adminId: this.adminId,
+          password: this.password,
         });
 
         if (response.data.token) {
           // If the login is successful, store the token in localStorage and Vuex
           localStorage.setItem('token', response.data.token);
           this.setToken(response.data.token);
-          this.setUser(response.data.user);
+          this.setStaff(response.data.staff);
 
           // Redirect after delay
           setTimeout(() => {
@@ -82,12 +82,12 @@ export default {
           }, 2000);
         }
       } catch (error) {
-        this.errorMessage = error.response?.data?.message || "Invalid username or password. Please try again.";
+        this.errorMessage = error.response?.data?.message || "Invalid ID or password. Please try again.";
       }
     },
   },
 };
-</script> -->
+</script>
 
 <style scoped>
 /* keanan css */
