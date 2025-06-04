@@ -4,3 +4,8 @@ import router from './router/index.js'
 import Vuex from './store/index.js'
 
 createApp(App).use(router).use(Vuex).mount('#app')
+
+
+
+
+
