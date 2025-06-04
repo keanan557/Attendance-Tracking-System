@@ -8,8 +8,8 @@
         <h2 class="title">Log in</h2>
       </div>
 
-      <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      <!-- <p class="subtitle">Youth is 37% of South Africa, but 100% of its future</p> -->
+      <!-- <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> -->
+      <p class="subtitle">Youth is 37% of South Africa, but 100% of its future</p>
 
       <div class="input-container">
         <!-- Admin ID Input -->
@@ -33,10 +33,14 @@
       </div>
 
       <!-- Login Button -->
-      <button type="submit" class="login-button">login-container</button>
+      <button type="submit" class="login-button">Login</button>
           <div v-if="errorMessage" class="error-message">
             {{ errorMessage }}
           </div>
+
+          <p class="forgot-password">
+          <a href="#">Forgot Password?</a>
+          </p>
     </form>
   </div>
 </template>
@@ -89,14 +93,14 @@ export default {
 /* keanan css */
 
 .login-container {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family:  'Inter', 'Open Sans';
   display: flex;
   justify-content: center;
   margin: 70px auto;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: #2c3e50;
+  color: #000000;
   height: 595px;
   width: 440px;
   border-radius: 10px;
@@ -125,8 +129,8 @@ export default {
 }
 
 .login-button {
-  /* background: #6EC966; */
-  width: 200px;
+  background: #0F4392;
+    width: 200px;
   border-radius: 20px;
   height: 46px;
   cursor: pointer;
@@ -159,4 +163,30 @@ export default {
   flex-direction: column;
   gap: 4rem;
 }
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.remember-me label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 10px;
+  justify-content: start;
+  width: 100%;
+  padding-left: 20px;
+}
+
+.forgot-password {
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  font-size: 12px;
+  color: #0F4392;
+  text-decoration: none;
+}
+
 </style>
