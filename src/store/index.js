@@ -1,6 +1,5 @@
 import { createStore } from "vuex";
 import axios from "axios";
-
 export default createStore({
   state: {
     admin: null,
@@ -34,7 +33,6 @@ export default createStore({
     }
   },
   actions: {
-
     /* ADMIN */
     async fetchAdmin({ commit }) {
       try {
@@ -46,7 +44,6 @@ export default createStore({
         console.error("Error fetching Admin data:", error);
       }
     },
-
     async deleteAdmin({ dispatch }, admin_id) {
       try {
         await fetch(`http://localhost:3000/admin/${admin_id}`, {
@@ -57,7 +54,6 @@ export default createStore({
         console.error("Error while deleting Record:", error);
       }
     },
-
     async addAdmin({ dispatch }, payload) {
       try {
         await fetch("http://localhost:3000/admin/", {
@@ -72,7 +68,6 @@ export default createStore({
         console.error("Error adding Record:", error);
       }
     },
-
     async updateAdmin({ dispatch }, payload) {
       try {
         await fetch(`http://localhost:3000/admin/${payload.admin_id}`, {
@@ -87,7 +82,6 @@ export default createStore({
         console.error("Error updating Redord:", error);
       }
     },
-
      /*STAFF */
     async fetchStaff({ commit }) {
       try {
@@ -99,7 +93,6 @@ export default createStore({
         console.error("Error fetching Staff data:", error);
       }
     },
-
     async deleteStaff({ dispatch }, staff_id) {
       try {
         await fetch(`http://localhost:3000/staff/${staff_id}`, {
@@ -110,7 +103,6 @@ export default createStore({
         console.error("Error while deleting Record:", error);
       }
     },
-
     async addStaff({ dispatch }, payload) {
       try {
         await fetch("http://localhost:3000/staff/", {
@@ -125,7 +117,6 @@ export default createStore({
         console.error("Error adding Record:", error);
       }
     },
-
     async updateStaff({ dispatch }, payload) {
       try {
         await fetch(`http://localhost:3000/staff/${payload.staff_id}`, {
@@ -140,7 +131,6 @@ export default createStore({
         console.error("Error updating Redord:", error);
       }
     },
-
      /* NFC */
     async fetchNFC({ commit }) {
       try {
@@ -152,7 +142,6 @@ export default createStore({
         console.error("Error fetching NFC data:", error);
       }
     },
-
     async deleteNFC({ dispatch }, nfc_id) {
       try {
         await fetch(`http://localhost:3000/nfc/${nfc_id}`, {
@@ -163,7 +152,6 @@ export default createStore({
         console.error("Error while deleting Record:", error);
       }
     },
-
     async addNFC({ dispatch }, payload) {
       try {
         await fetch("http://localhost:3000/nfc/", {
@@ -178,7 +166,6 @@ export default createStore({
         console.error("Error adding Record:", error);
       }
     },
-
     async updateNFC({ dispatch }, payload) {
       try {
         await fetch(`http://localhost:3000/nfc/${payload.nfc_id}`, {
@@ -193,29 +180,26 @@ export default createStore({
         console.error("Error updating Redord:", error);
       }
     },
-
-    async loginStaff({ commit }, credentials) {
+    async loginAdmin({ commit }, credentials) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/staff",
+          "http://localhost:3000/login",
           credentials
         );
-        const { token, staff } = response.data;
-
+        const { token, admin } = response.data;
         localStorage.setItem("token", token);
         commit("setToken", token);
-        commit("setStaff", staff);
-        return staff;
+        commit("setAdmin", admin);
+        return admin;
       } catch (error) {
         console.error("Error logging in", error);
         throw error;
       }
     },
-
-    logoutStaff({ commit }) {
+    logoutAdmin({ commit }) {
       localStorage.removeItem("token");
       commit("setToken", null);
-      commit("setStaff", null);
+      commit("setAdmin", null);
     }
   },
   modules: {},
