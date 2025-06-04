@@ -1,26 +1,38 @@
 <template>
-    ksknfksnfk
+    <div class="dashboard-container">
+
+    
      <!-- Header Section -->
-    <header>
-        <div class="logo">ILISO v.01</div>
-        <h2>Welcome Yandisa :wave:</h2>
-    </header>
+      <div class="side-bar">
+        <header>
+            <div class="logo"><img src="/Logo.png" /></div>
+            <h2>Welcome Yandisa :wave:</h2>
+        </header>
+    </div>
+
     <!-- Dashboard Metrics Section -->
+     <div class="main-board">
     <section class="metrics">
         <div class="metric">
-            <img src="insert employees-icon.png" alt="Employees">
+            <img src="/Ellipse 3.png" alt="Employees">
+            <div class="metric-info">
             <span>Employees</span>
-            <strong>5,423</strong>
+            <strong class="metric-num">5,423</strong>
+            </div>
         </div>
         <div class="metric">
-            <img src=" insert inactive-icon.png" alt="Inactive">
+            <img src="/Ellipse 3.png" alt="Inactive">
+             <div class="metric-info">
             <span>Inactive</span>
-            <strong>1,893</strong>
+            <strong class="metric-num">1,893</strong>
+            </div>
         </div>
         <div class="metric">
-            <img src="active-now-icon.png" alt="Active Now">
+            <img src="/Ellipse 3.png" alt="Active Now">
+            <div class="metric-info">
             <span>Active Now</span>
-            <strong>189</strong>
+            <strong class="metric-num">189</strong>
+            </div>
             <div class="avatars">
                 <!-- Placeholder for avatars -->
             </div>
@@ -28,13 +40,15 @@
     </section>
     <!-- Active Employees Section -->
     <section class="active-employees">
+        <div class="search-contain">
         <h3>Active Employees</h3>
         <div class="search-bar">
             <input type="text" placeholder="Search">
             <select>
-                <option value="newest">Sort by: Newest</option>
-                <option value="oldest">Sort by: Oldest</option>
+                <option value="newest">Sort by: Onsite</option>
+                <option value="oldest">Sort by: Absent</option>
             </select>
+        </div>
         </div>
         <table>
             <thead>
@@ -138,6 +152,8 @@
             Powered By Life Choices
         </div>
     </footer>
+    </div>
+    </div>
 </template>
 
 
@@ -203,3 +219,69 @@ export default {
   },
 };
 </script>
+
+<style>
+body{
+    margin: 0;
+    padding: 0;
+}
+
+</style>
+
+<style scope>
+   .dashboard-container{
+    border:2px solid red;
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+   }
+
+   .search-contain{
+    border:2px solid red;
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+   }
+
+   .metric-info{
+    display: flex;
+    flex-direction: column;
+   }
+
+   .metric{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+   }
+
+   .metric-num{
+    font-size: 32px;
+    font-weight: 600;
+    font-family: 'Poppins';
+   }
+
+   .side-bar{
+    border:2px solid blue;
+   }
+   .main-board{
+    border:2px solid green;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+   }
+
+   .metrics{
+    display: flex;
+    border:2px solid purple;
+    justify-content: space-around;
+    gap: 2rem;
+   }
+
+   .active-employees{
+    border:2px solid yellow;
+   }
+
+   .footer{
+    border:2px solid orange;
+   }
+</style>
