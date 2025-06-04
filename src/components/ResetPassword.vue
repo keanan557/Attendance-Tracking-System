@@ -4,8 +4,12 @@
     <form @submit.prevent="handleSubmit">
       <label for="password">New Password:</label>
       <input type="password" v-model="newPassword" required />
-      <button type="submit">Reset Password</button>
+
+      <button type="submit" :disabled="loading">
+        {{ loading ? 'Resetting...' : 'Reset Password' }}
+      </button>
     </form>
+
     <p v-if="message" class="message">{{ message }}</p>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
@@ -19,21 +23,27 @@ export default {
     return {
       newPassword: '',
       message: '',
-      error: ''
+      error: '',
+      loading: false
     };
   },
   computed: {
     token() {
-      return this.$route.query.token || 'mock-token'; // Fallback for testing
+      return this.$route.query.token || '';
     }
   },
   methods: {
     async handleSubmit() {
       this.message = '';
       this.error = '';
-      const { message, error } = await AuthService.resetPassword(this.token, this.newPassword);
+      this.loading = true;
+
+      const trimmedPassword = this.newPassword.trim();
+      const { message, error } = await AuthService.resetPassword(this.token, trimmedPassword);
+
       this.message = message || '';
       this.error = error || '';
+      this.loading = false;
     }
   }
 };
@@ -47,8 +57,14 @@ export default {
 }
 .message {
   color: green;
+  margin-top: 10px;
 }
 .error {
   color: red;
+  margin-top: 10px;
+}
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 </style>

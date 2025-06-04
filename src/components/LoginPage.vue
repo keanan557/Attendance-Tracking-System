@@ -1,69 +1,86 @@
 <template>
   <div class="login-container">
     <form id="login-form" class="login-card" @submit.prevent="handleLogin">
-
-
       <div class="top-logo">
         <img src="#" alt="Logo" class="logo" />
         <h2 class="title">Log in</h2>
       </div>
 
       <!-- <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> -->
-      <p class="subtitle">Youth is 37% of South Africa, but 100% of its future</p>
+      <p class="subtitle">
+        Youth is 37% of South Africa, but 100% of its future
+      </p>
 
       <div class="input-container">
         <!-- Admin ID Input -->
         <div class="input-group">
           <!-- <i class="fas fa-user"></i> -->
           <img class="icon" src="/union-1.png" />
-          <input type="text" id="userId" placeholder="Admin ID" v-model="adminId" required />
+          <input
+            type="text"
+            id="userId"
+            placeholder="Admin ID"
+            v-model="adminId"
+            required
+          />
         </div>
 
         <!-- Password Input -->
         <div class="input-group">
           <!-- <i class="fas fa-lock"></i> -->
           <img class="icon" src="/Key.png" />
-          <input type="password" id="password" placeholder="Password" v-model="password" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            v-model="password"
+            required
+          />
         </div>
       </div>
 
       <!-- Remember Me Checkbox -->
       <div class="remember-me">
-        <label><input type="checkbox" id="rememberMe" v-model="rememberMe" />Remember me</label>
+        <label
+          ><input
+            type="checkbox"
+            id="rememberMe"
+            v-model="rememberMe"
+          />Remember me</label
+        >
       </div>
 
       <!-- Login Button -->
       <button type="submit" class="login-button">Login</button>
-          <div v-if="errorMessage" class="error-message">
-            {{ errorMessage }}
-          </div>
+      <div v-if="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
 
-          <p class="forgot-password">
-          <a href="#">Forgot Password?</a>
-          </p>
+      <p class="forgot-password">
+        <router-link to="/forgot-password">Forgot Password?</router-link>
+      </p>
     </form>
   </div>
 </template>
 
-
 <script>
-import axios from 'axios';
-import { mapActions } from 'vuex';
+import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "LoginPage",
   data() {
     return {
-      adminId: '',
-      password: '',
+      adminId: "",
+      password: "",
       rememberMe: false,
-      errorMessage: '',
+      errorMessage: "",
     };
   },
   methods: {
-    ...mapActions(['setToken', 'setStaff']),
+    ...mapActions(["setToken", "setStaff"]),
     async handleLogin() {
-      this.errorMessage = '';
+      this.errorMessage = "";
       try {
         const response = await axios.post("http://localhost:3000/staff", {
           adminId: this.adminId,
@@ -72,7 +89,7 @@ export default {
 
         if (response.data.token) {
           // If the login is successful, store the token in localStorage and Vuex
-          localStorage.setItem('token', response.data.token);
+          localStorage.setItem("token", response.data.token);
           this.setToken(response.data.token);
           this.setStaff(response.data.staff);
 
@@ -82,7 +99,9 @@ export default {
           }, 2000);
         }
       } catch (error) {
-        this.errorMessage = error.response?.data?.message || "Invalid ID or password. Please try again.";
+        this.errorMessage =
+          error.response?.data?.message ||
+          "Invalid ID or password. Please try again.";
       }
     },
   },
@@ -93,7 +112,7 @@ export default {
 /* keanan css */
 
 .login-container {
-  font-family:  'Inter', 'Open Sans';
+  font-family: "Inter", "Open Sans";
   display: flex;
   justify-content: center;
   margin: 70px auto;
@@ -105,7 +124,6 @@ export default {
   width: 440px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-
 }
 
 .title {
@@ -129,8 +147,8 @@ export default {
 }
 
 .login-button {
-  background: #0F4392;
-    width: 200px;
+  background: #0f4392;
+  width: 200px;
   border-radius: 20px;
   height: 46px;
   cursor: pointer;
@@ -148,7 +166,6 @@ export default {
   height: 51px;
   /* border: 2px solid red; */
   border-radius: 7px;
-
 }
 
 .input-group input::placeholder {
@@ -185,8 +202,7 @@ export default {
 
 .forgot-password a {
   font-size: 12px;
-  color: #0F4392;
+  color: #0f4392;
   text-decoration: none;
 }
-
 </style>
