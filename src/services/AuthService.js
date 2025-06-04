@@ -1,27 +1,31 @@
 // src/services/AuthService.js
+import axios from 'axios';
+
+const API_BASE_URL = 'http://localhost:3000'; 
 
 export default {
-  sendResetLink(email) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (email.includes('@')) {
-          resolve({ message: 'Reset link sent to your email.' });
-        } else {
-          resolve({ error: 'Invalid email address.' });
-        }
-      }, 1000);
-    });
+  async sendResetLink(email) {
+    try {
+      const res = await axios.post(`${API_BASE_URL}/forgot-password`, { email });
+      return { message: res.data.message };
+    } catch (err) {
+      return {
+        error: err.response?.data?.message || 'Failed to send reset link.'
+      };
+    }
   },
 
-  resetPassword(token, newPassword) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (newPassword.length >= 6) {
-          resolve({ message: 'Password reset successful!' });
-        } else {
-          resolve({ error: 'Password must be at least 6 characters.' });
-        }
-      }, 1000);
-    });
+  async resetPassword(token, newPassword) {
+    try {
+      const res = await axios.post(`${API_BASE_URL}/reset-password`, {
+        token,
+        newPassword
+      });
+      return { message: res.data.message };
+    } catch (err) {
+      return {
+        error: err.response?.data?.message || 'Password reset failed.'
+      };
+    }
   }
 };

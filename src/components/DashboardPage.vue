@@ -4,31 +4,53 @@
     
      <!-- Header Section -->
       <div class="side-bar">
-        <header>
+        <!-- <header> -->
             <div class="logo"><img src="/Logo.png" /></div>
-            <h2>Welcome Yandisa :wave:</h2>
-        </header>
+            
+           <div class="user-info">
+            <div></div>
+            <img src="/image.png" alt="User's Avatar">
+
+            <span>Tara Snell</span>
+            <span>Project Manager</span>
+
+        </div>
+
+        <!-- </header> -->
     </div>
 
     <!-- Dashboard Metrics Section -->
      <div class="main-board">
+        <h2>Welcome Tara 👋🏻</h2>
     <section class="metrics">
+         
         <div class="metric">
-            <img src="/Ellipse 3.png" alt="Employees">
+           
+             <div class="image-contain">
+            <img src="/Ellipse 3.png" alt="Inactive">
+                <img src="/profile-tick.png" class="overlay-image"/>
+            </div>
             <div class="metric-info">
             <span>Employees</span>
             <strong class="metric-num">5,423</strong>
             </div>
         </div>
         <div class="metric">
+            <div class="image-contain">
             <img src="/Ellipse 3.png" alt="Inactive">
+                <img src="/profile-2user.png" class="overlay-image"/>
+            </div>
              <div class="metric-info">
             <span>Inactive</span>
             <strong class="metric-num">1,893</strong>
             </div>
         </div>
         <div class="metric">
-            <img src="/Ellipse 3.png" alt="Active Now">
+            <div class="image-contain">
+                <img src="/Ellipse 3.png" alt="Active Now">
+                <img src="/monitor.png" class="overlay-image" />
+            </div>
+            
             <div class="metric-info">
             <span>Active Now</span>
             <strong class="metric-num">189</strong>
@@ -43,7 +65,7 @@
         <div class="search-contain">
         <h3>Active Employees</h3>
         <div class="search-bar">
-            <input type="text" placeholder="Search">
+            <input type="text" class="search-box" placeholder="Search">
             <select>
                 <option value="newest">Sort by: Onsite</option>
                 <option value="oldest">Sort by: Absent</option>
@@ -61,93 +83,44 @@
                     <th>Status</th>
                 </tr>
             </thead>
+
             <tbody>
-                <tr>
-                    <td>Tarryn Masunda</td>
-                    <td>HR</td>
-                    <td>07:39</td>
-                    <td>tarryn@microsoft.com</td>
-                    <td>545545454</td>
-                    <td><button>On Site</button></td>
-                </tr>
-                <tr>
-                    <td>Owethu Sityata</td>
-                    <td>Sales Force</td>
-                    <td>07:39</td>
-                    <td>owethu@yahoo.com</td>
-                    <td>545545454</td>
-                    <td><button>Off Site</button></td>
-                </tr>
-                <tr>
-                    <td>Sinovuyo Joe</td>
-                    <td>Administration</td>
-                    <td>07:39</td>
-                    <td>sino@adobe.com</td>
-                    <td>545545454</td>
-                    <td><button>Off Site</button></td>
-                </tr>
-                <tr>
-                    <td>Keanan Oliver</td>
-                    <td>HR</td>
-                    <td>07:39</td>
-                    <td>oliver@tesla.com</td>
-                    <td>545545454</td>
-                    <td><button>On Site</button></td>
-                </tr>
-                <tr>
-                    <td>Yandisa Khumalo</td>
-                    <td>Team Leader</td>
-                    <td>07:39</td>
-                    <td>yandisa@google.com</td>
-                    <td>545545454</td>
-                    <td><button>On Site</button></td>
-                </tr>
-                <tr>
-                    <td>Asive Daniel</td>
-                    <td>Team Leader</td>
-                    <td>07:39</td>
-                    <td>asive@microsoft.com</td>
-                    <td>545545454</td>
-                    <td><button>On Site</button></td>
-                </tr>
-                <tr>
-                    <td>Tiffany Johnston</td>
-                    <td>Floor Manager</td>
-                    <td>07:39</td>
-                    <td>tiffany@yahoo.com</td>
-                    <td>545545454</td>
-                    <td><button>On Site</button></td>
-                </tr>
-                <tr>
-                    <td>Sibabalwe Lingani</td>
-                    <td>Health & Safety</td>
-                    <td>07:39</td>
-                    <td>siba@gmail.com</td>
-                    <td>545545454</td>
-                    <td><button>Off Site</button></td>
-                </tr>
+              <tr v-for="(employee, index) in paginatedEmployees" :key="index">
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.time }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.id }}</td>
+                <td><button>{{ employee.status }}</button></td>
+              </tr>
             </tbody>
-        </table>
-        <div class="pagination">
-            <span>Showing data 1 to 8 of 256K entries</span>
-            <nav>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">...</a>
-                <a href="#">40</a>
-                <a href="#">Next</a>
-            </nav>
+            
+        </table> 
+         
+         <div class="pagination">
+          <span>Showing data 1 to 8 of 256K entries</span>
+        <nav v-if="totalPages > 1">
+          <a href="#" @click.prevent="prevPage()">Previous</a>
+          <a
+            v-for="page in totalPages"
+            :key="page"
+            href="#"
+            :class="{ active: page === currentPage }"
+            @click.prevent="goToPage(page)"
+          >
+            {{ page }}
+          </a>
+          <a href="#" @click.prevent="nextPage()">Next</a>
+        </nav>
         </div>
+
+      
+
+        <!-- new ends -->
     </section>
     <!-- Footer Section -->
     <footer>
-        <div class="user-info">
-            <img src="" alt="User's Avatar">
-            <span>Yandisa Khumalo</span>
-            <span>Project Manager</span>
-        </div>
+        
         <div class="footer-slogan">
             Powered By Life Choices
         </div>
@@ -169,7 +142,7 @@ export default {
   },
   data() {
     return {
-      welcomeMessage: "Welcome Yandisa 👋",
+      welcomeMessage: "Welcome Eren Yeager 👋",
       currentPage: 1,
       pageSize: 5,
       metrics: [
@@ -187,7 +160,12 @@ export default {
         { name: "Asive Daniel", department: "Team Leader", time: "07:39", email: "asive@microsoft.com", id: "545545454", status: "On Site" },
         { name: "Tiffany Johnston", department: "Floor Manager", time: "07:39", email: "tiffany@yahoo.com", id: "545545454", status: "On Site" },
         { name: "Sibabalwe Lingani", department: "Health & Safety", time: "07:39", email: "siba@gmail.com", id: "545545454", status: "Off Site" },
-        // Add more if needed
+        { name: "Lebo Mokoena", department: "Customer Service", time: "07:39", email: "lebo@uber.com", id: "545545454", status: "On Site" },
+        { name: "Thabiso Molefe", department: "IT", time: "07:39", email: "thabiso@facebook.com", id: "545545454", status: "On Site" },
+        { name: "Zanele Tshabalala", department: "HR", time: "07:39", email: "zanele@amazon.com", id: "545545454", status: "Off Site" },
+        { name: "Linda Dlamini", department: "Marketing", time: "07:39", email: "linda@nike.com", id: "545545454", status: "On Site" },
+        { name: "Khaya Dube", department: "IT", time: "07:39", email: "khaya@intel.com", id: "545545454", status: "On Site" },
+        { name: "Amanda Cele", department: "Security", time: "07:39", email: "amanda@paypal.com", id: "545545454", status: "Off Site" },
       ],
       user: {
         name: "Yandisa Khumalo",
@@ -204,7 +182,35 @@ export default {
       return Math.ceil(this.allEmployees.length / this.pageSize);
     },
   },
-  methods: {
+  // methods: {
+  //   goToPage(page) {
+  //     if (page >= 1 && page <= this.totalPages) {
+  //       this.currentPage = page;
+  //     }
+  //   },
+//     watch: {
+//   currentPage(newVal) {
+//     console.log("Page changed to:", newVal);
+//   }
+// }
+
+// jk
+
+//     methods: {
+//       paginatedEmployees() {
+//         const start = (this.currentPage - 1) * this.pageSize;
+//         return this.allEmployees.slice(start, start + this.pageSize);
+//     },
+//     nextPage() {
+//       this.goToPage(this.currentPage + 1);
+//     },
+//     prevPage() {
+//       this.goToPage(this.currentPage - 1);
+//     },
+//   },
+// };
+
+methods: {
     goToPage(page) {
       if (page >= 1 && page <= this.totalPages) {
         this.currentPage = page;
@@ -224,6 +230,7 @@ export default {
 body{
     margin: 0;
     padding: 0;
+    background: #FAFBFF;
 }
 
 </style>
@@ -232,8 +239,10 @@ body{
    .dashboard-container{
     border:2px solid red;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 100vh;
+    /* padding: 20px; */
+    gap: 3rem;
    }
 
    .search-contain{
@@ -241,6 +250,12 @@ body{
     display: flex;
     justify-content: space-between;
     align-items:center ;
+   }
+
+   .search-box{
+    width: 285px;
+    height: 33px;
+    margin-right: 20px;
    }
 
    .metric-info{
@@ -260,14 +275,29 @@ body{
     font-family: 'Poppins';
    }
 
+   .image-contain{
+    position: relative;
+    display: inline-block;
+   }
+
+   .overlay-image{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+   }
+
    .side-bar{
     border:2px solid blue;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
    }
    .main-board{
     border:2px solid green;
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
    }
 
    .metrics{
@@ -275,10 +305,44 @@ body{
     border:2px solid purple;
     justify-content: space-around;
     gap: 2rem;
+    background-color: #fff;
+    width: 1250px;
    }
 
    .active-employees{
     border:2px solid yellow;
+    background-color: #fff;
+   }
+
+   table{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 2px solid red;
+   }
+
+   tr{
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid green;
+    /* padding: 8px; */
+   }
+
+   th{
+    text-align: center;
+    flex-grow: 1;
+   }
+
+   td{
+    text-align: center;
+    flex-grow: 1;
+   }
+
+   tr button{
+    width: 85px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
    }
 
    .footer{

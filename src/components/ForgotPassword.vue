@@ -4,8 +4,12 @@
     <form @submit.prevent="handleSubmit">
       <label for="email">Email:</label>
       <input type="email" v-model="email" required />
-      <button type="submit">Send Reset Link</button>
+
+      <button type="submit" :disabled="loading">
+        {{ loading ? 'Sending...' : 'Send Reset Link' }}
+      </button>
     </form>
+
     <p v-if="message" class="message">{{ message }}</p>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
@@ -19,16 +23,23 @@ export default {
     return {
       email: '',
       message: '',
-      error: ''
+      error: '',
+      loading: false
     };
   },
   methods: {
     async handleSubmit() {
+      console.log("Forgot Password submitted with email:", this.email);
+      this.loading = true;
       this.message = '';
       this.error = '';
-      const { message, error } = await AuthService.sendResetLink(this.email);
+
+      const trimmedEmail = this.email.trim();
+      const { message, error } = await AuthService.sendResetLink(trimmedEmail);
+
       this.message = message || '';
       this.error = error || '';
+      this.loading = false;
     }
   }
 };
@@ -42,8 +53,14 @@ export default {
 }
 .message {
   color: green;
+  margin-top: 10px;
 }
 .error {
   color: red;
+  margin-top: 10px;
+}
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 </style>

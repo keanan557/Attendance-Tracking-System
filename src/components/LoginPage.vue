@@ -3,8 +3,6 @@
   <div class="login-container">
     <!-- Login form card -->
     <form id="login-form" class="login-card" @submit.prevent="handleLogin">
-
-      <!-- Logo and title section -->
       <div class="top-logo">
         <img src="#" alt="Logo" class="logo" />
         <h2 class="title">Log in</h2>
@@ -18,19 +16,37 @@
         <!-- Admin ID Input Field -->
         <div class="input-group">
           <img class="icon" src="/union-1.png" />
-          <input type="text" id="userId" placeholder="Admin ID" v-model="adminId" required />
+          <input
+            type="text"
+            id="userId"
+            placeholder="Admin ID"
+            v-model="adminId"
+            required
+          />
         </div>
 
         <!-- Password Input Field -->
         <div class="input-group">
           <img class="icon" src="/Key.png" />
-          <input type="password" id="password" placeholder="Password" v-model="password" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            v-model="password"
+            required
+          />
         </div>
       </div>
 
       <!-- Remember Me checkbox -->
       <div class="remember-me">
-        <label><input type="checkbox" id="rememberMe" v-model="rememberMe" />Remember me</label>
+        <label
+          ><input
+            type="checkbox"
+            id="rememberMe"
+            v-model="rememberMe"
+          />Remember me</label
+        >
       </div>
 
       <!-- Login button -->
@@ -50,25 +66,25 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { mapActions } from 'vuex';
+import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "LoginPage",
   data() {
     return {
       // Form data
-      adminId: '',
-      password: '',
+      adminId: "",
+      password: "",
       rememberMe: false,
 
       // Error message for failed login
-      errorMessage: '',
+      errorMessage: "",
     };
   },
   methods: {
     // Map Vuex actions to set token and staff details globally
-    ...mapActions(['setToken', 'setStaff']),
+    ...mapActions(["setToken", "setStaff"]),
 
     // Login handler for the form submission
     async handleLogin() {
@@ -246,3 +262,4 @@ export default {
   text-decoration: underline;
 }
 </style>
+
