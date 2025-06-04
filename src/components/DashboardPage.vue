@@ -91,7 +91,12 @@
                 <td>{{ employee.time }}</td>
                 <td>{{ employee.email }}</td>
                 <td>{{ employee.id }}</td>
-                <td><button>{{ employee.status }}</button></td>
+               <td>
+                  <button :class="employee.status === 'On Site' ? 'onsite' : 'offsite'">
+                     {{ employee.status }}
+                  </button>
+                </td>
+
               </tr>
             </tbody>
             
@@ -344,6 +349,31 @@ body{
     border-radius: 4px;
     cursor: pointer;
    }
+
+   button {
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 4px 12px;
+  border: 1px solid;
+  cursor: default;
+  width: 86px;
+  height: 29px;
+  text-align: center;
+}
+
+button.onsite {
+  background-color: rgba(0, 176, 135, 0.38); /* #00B087 at 38% opacity */
+  border-color: #00B087;
+  color: #00B087;
+}
+
+button.offsite {
+  background-color: rgba(255, 71, 71, 0.38); /* #FF4747 at 38% opacity */
+  border-color: #FF4747;
+  color: #FF4747;
+}
+
 
    .footer{
     border:2px solid orange;
