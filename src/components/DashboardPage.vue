@@ -374,6 +374,46 @@ button.offsite {
   color: #FF4747;
 }
 
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  font-family: 'Poppins';
+  font-size: 14px;
+  color: #b5b7c0; 
+}
+
+.pagination nav {
+  display: flex;
+  gap: 6px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb; 
+  background-color: #f9fafb; 
+  color: #0f4392; 
+  text-decoration: none;
+  font-weight: 500;
+  min-width: 25px;
+  text-align: center;
+  gap: 10px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pagination a:hover {
+  background-color: #e5e7eb;
+}
+
+.pagination a.active {
+  background-color: #0f4392; 
+  color: #fff;
+  border-color:#0f4392; 
+}
+
 
    .footer{
     border:2px solid orange;
