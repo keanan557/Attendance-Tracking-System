@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 import axios from "axios";
 export default createStore({
   state: {
-    admin: null,
+    admin: [],
     staff: [],
     nfc: [],
     token: localStorage.getItem("token") || null,
@@ -85,7 +85,7 @@ export default createStore({
      /*STAFF */
     async fetchStaff({ commit }) {
       try {
-        const response = await fetch("http://localhost:3000/users");
+        const response = await fetch("http://localhost:3000/staff");
         if (!response.ok) throw new Error("Failed to fetch staf");
         const info = await response.json();
         commit("setStaff", info);
