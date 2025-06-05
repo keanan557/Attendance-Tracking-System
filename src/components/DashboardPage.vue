@@ -137,7 +137,7 @@
     <footer>
         
         <div class="footer-slogan">
-            Powered By Life Choices
+            Powered By ILISO
         </div>
     </footer>
         <!-- new ends -->
