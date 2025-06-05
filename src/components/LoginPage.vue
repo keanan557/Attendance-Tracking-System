@@ -4,7 +4,8 @@
     <!-- Login form card -->
     <form id="login-form" class="login-card" @submit.prevent="handleLogin">
       <div class="top-logo">
-        <img src="#" alt="Logo" class="logo" />
+        <img src="/logo 1.png" alt="Logo" class="logo" />
+       
         <h2 class="title">Log in</h2>
       </div>
 
@@ -153,8 +154,8 @@ export default {
 .top-logo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: start;
+  gap: 6rem;
 }
 
 .logo {
@@ -260,6 +261,40 @@ export default {
 .forgot-password a:hover {
   color: #7DC5F8; 
   text-decoration: underline;
+}
+
+/* ===================== Error Message ===================== */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* responsiveness */
+@media(max-width:1024px){
+  .login-container{
+    width:900px;
+    /* margin-top: 200px; */
+  }
+}
+
+@media(max-width:768px){
+   .login-container{
+    width:600px;
+    /* margin-top: 200px; */
+  }
+}
+
+@media(max-width:480px){
+   .login-container{
+    width:310px;
+    /* margin-top: 20px; */
+  }
+
+  form{
+    width: 280px;
+  }
 }
 </style>
 
