@@ -87,7 +87,18 @@ button[disabled] {
   opacity: 0.6;
   cursor: not-allowed;
 }
+.top-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
 
 
 .inspirational-text{
