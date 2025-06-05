@@ -6,7 +6,7 @@
     
      <!-- Header Section -->
       <!-- <div class="side-bar">
-         <header> -->
+         <header> --> 
             <!-- <div class="logo"><img src="/Logo.png" /></div> -->
             
            <!-- <div class="user-info">
@@ -16,10 +16,10 @@
             <span>Tara Snell</span><br>
             <span>Project Manager</span>
 
-        </div> -->
+        </div>
 
-        <!-- </header> -->
-    <!-- </div> --> 
+         </header>
+    /div>  -->
 
     <!-- Dashboard Metrics Section -->
      <div class="main-board">
@@ -69,70 +69,64 @@
     </section>
     <!-- Active Employees Section -->
     <section class="active-employees">
-        <div class="search-contain">
+    <div class="search-contain">
         <h3>Active Employees</h3>
         <div class="search-bar">
-          <div class="search-icon-input">
-            <input type="text" class="search-box" placeholder="     Search">
-            <img src="/search 1.png" class="overlay-icon" />
-          </div>
-            
-            <select>
-                <option value="newest">Sort by: Onsite</option>
-                <option value="oldest">Sort by: Absent</option>
-            </select>
-        </div>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Employee Name</th>
-                    <th>Department</th>
-                    <th>Clock In Time</th>
-                    <th>Email</th>
-                    <th>Employee ID</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
+            <div class="search-icon-input">
+                <input type="text" class="search-box" placeholder="     Search" v-model="searchTerm">
+                <img src="/search 1.png" class="overlay-icon" />
+            </div>
 
-            <tbody>
-              <tr v-for="(employee, index) in paginatedEmployees" :key="index">
+            <select v-model="sortByStatus">
+                <option value="all">Sort by: All</option>
+                <option value="On Site">Sort by: On Site</option>
+                <option value="Off Site">Sort by: Off Site</option>
+            </select>   
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Clock In Time</th>
+                <th>Email</th>
+                <th>Employee ID</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr v-for="(employee, index) in paginatedFilteredEmployees" :key="index">
                 <td>{{ employee.name }}</td>
                 <td>{{ employee.department }}</td>
                 <td>{{ employee.time }}</td>
                 <td>{{ employee.email }}</td>
                 <td>{{ employee.id }}</td>
-               <td>
-                  <button :class="employee.status === 'On Site' ? 'onsite' : 'offsite'">
-                     {{ employee.status }}
-                  </button>
+                <td>
+                    <button :class="employee.status === 'On Site' ? 'onsite' : 'offsite'">
+                        {{ employee.status }}
+                    </button>
                 </td>
+            </tr>
+        </tbody>
 
-              </tr>
-            </tbody>
-            
-        </table> 
-         
-         <div class="pagination">
-          <span>Showing data 1 to 8 of 256K entries</span>
+    </table>
+
+    <div class="pagination">
+        <span>Showing data {{ paginationInfo }}</span>
         <nav v-if="totalPages > 1">
-          <a href="#" @click.prevent="prevPage()">Previous</a>
-          <a
-            v-for="page in totalPages"
-            :key="page"
-            href="#"
-            :class="{ active: page === currentPage }"
-            @click.prevent="goToPage(page)"
-          >
-            {{ page }}
-          </a>
-          <a href="#" @click.prevent="nextPage()">Next</a>
+            <a href="#" @click.prevent="prevPage()">Previous</a>
+            <a v-for="page in totalPages" :key="page" href="#" :class="{ active: page === currentPage }" @click.prevent="goToPage(page)">
+                {{ page }}
+            </a>
+            <a href="#" @click.prevent="nextPage()">Next</a>
         </nav>
-        
-        </div>
 
-      
-    </section>
+    </div>
+
+
+</section>
     <!-- Footer Section -->
     <footer>
         
@@ -159,17 +153,18 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      welcomeMessage: "Welcome Er5en Yeager 👋",
-      currentPage: 1,
-      pageSize: 5,
-      
-      metrics: [],
-      allEmployees: [],
-      user: {}
-    };
-  },
+ data() {
+        return {
+            welcomeMessage: "Welcome Er5en Yeager 👋",
+            currentPage: 1,
+            pageSize: 5,
+            searchTerm: '', // New: Data property for search input
+            sortByStatus: 'all', // New: Data property for select input
+            metrics: [],
+            allEmployees: [], // This will hold all employees from your JSON
+            user: {}
+        };
+    },
   mounted() {
     fetch("/employees_data.json")
       .then(response => response.json())
@@ -184,29 +179,94 @@ export default {
   },
 
   computed: {
-    paginatedEmployees() {
-      const start = (this.currentPage - 1) * this.pageSize;
-      return this.allEmployees.slice(start, start + this.pageSize);
-    },
-    totalPages() {
-      return Math.ceil(this.allEmployees.length / this.pageSize);
-    },
-  },
+        // First, filter employees based on search term and status
+        filteredEmployees() {
+            let tempEmployees = this.allEmployees;
 
+            // Filter by search term
+            if (this.searchTerm) {
+                const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+                tempEmployees = tempEmployees.filter(employee => {
+                    // Search across multiple fields: name, department, email, ID
+                    return employee.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+                           employee.department.toLowerCase().includes(lowerCaseSearchTerm) ||
+                           employee.email.toLowerCase().includes(lowerCaseSearchTerm) ||
+                           employee.id.toLowerCase().includes(lowerCaseSearchTerm);
+                });
+            }
 
-methods: {
-    goToPage(page) {
-      if (page >= 1 && page <= this.totalPages) {
-        this.currentPage = page;
-      }
+            // Filter by status (Onsite/Absent)
+            if (this.sortByStatus !== 'all') {
+                tempEmployees = tempEmployees.filter(employee =>
+                    employee.status === this.sortByStatus
+                );
+            }
+
+            return tempEmployees;
+        },
+
+        // Now, paginate the filtered employees
+        paginatedFilteredEmployees() {
+            // Reset currentPage to 1 if the filter changes significantly
+            // This isn't strictly necessary but can prevent empty pages
+            // if the current page becomes out of bounds after filtering.
+            // A watch on filteredEmployees is a better approach for this.
+
+            const start = (this.currentPage - 1) * this.pageSize;
+            const end = start + this.pageSize;
+            return this.filteredEmployees.slice(start, end);
+        },
+
+        // Calculate total pages based on filtered employees
+        totalPages() {
+            return Math.ceil(this.filteredEmployees.length / this.pageSize);
+        },
+
+        paginationInfo() {
+            const totalFiltered = this.filteredEmployees.length;
+            if (totalFiltered === 0) {
+                return `0 entries`;
+            }
+            const startEntry = (this.currentPage - 1) * this.pageSize + 1;
+            const endEntry = Math.min(startEntry + this.pageSize - 1, totalFiltered);
+            return `${startEntry} to ${endEntry} of ${totalFiltered} entries`;
+        }
     },
-    nextPage() {
-      this.goToPage(this.currentPage + 1);
+
+    methods: {
+        goToPage(page) {
+            if (page >= 1 && page <= this.totalPages) {
+                this.currentPage = page;
+            } else if (page < 1) { // Handle going before the first page
+                this.currentPage = 1;
+            } else if (page > this.totalPages && this.totalPages > 0) { // Handle going beyond last page
+                this.currentPage = this.totalPages;
+            }
+        },
+        nextPage() {
+            this.goToPage(this.currentPage + 1);
+        },
+        prevPage() {
+            this.goToPage(this.currentPage - 1);
+        },
     },
-    prevPage() {
-      this.goToPage(this.currentPage - 1);
-    },
-  },
+    watch: {
+        // Watch for changes in filteredEmployees. If it changes,
+        // reset current page to 1 to ensure the user always sees results from the start.
+        filteredEmployees() {
+            if (this.currentPage > this.totalPages && this.totalPages > 0) {
+                 this.currentPage = this.totalPages;
+            } else if (this.totalPages === 0) {
+                 this.currentPage = 1; // Or some other appropriate value if no results
+            } else {
+                 this.currentPage = 1;
+            }
+        },
+        // Watch for changes in pageSize to reset page if the number of items per page changes
+        pageSize() {
+            this.currentPage = 1;
+        }
+    }
 };
 </script>
 
