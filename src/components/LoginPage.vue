@@ -4,7 +4,7 @@
     <!-- Login form card -->
     <form id="login-form" class="login-card" @submit.prevent="handleLogin">
       <div class="top-logo">
-        <img src="#" alt="Logo" class="logo" />
+        <img src="/logo 1.png" alt="Logo" class="logo" />
         <h2 class="title">Log in</h2>
       </div>
 
@@ -260,6 +260,14 @@ export default {
 .forgot-password a:hover {
   color: #7DC5F8; 
   text-decoration: underline;
+}
+
+/* ===================== Error Message ===================== */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
 }
 </style>
 
