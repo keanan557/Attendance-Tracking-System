@@ -5,7 +5,7 @@
     <form id="login-form" class="login-card" @submit.prevent="handleLogin">
       <div class="top-logo">
         <img src="/logo 1.png" alt="Logo" class="logo" />
-        <img src="/logo 1.png" alt="Logo" class="logo" />
+       
         <h2 class="title">Log in</h2>
       </div>
 
