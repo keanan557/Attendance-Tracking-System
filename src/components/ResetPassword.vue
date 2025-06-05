@@ -15,9 +15,9 @@
       placeholder="📧    Email"  
 
       required
-    >
+    > <!-- new added code line -->
       <button type="submit" :disabled="loading" class="button">
-        {{ loading ? 'Resetting...' : 'Submit' }}
+        {{ loading ? 'Resetting...' : 'Send reset link' }}
       </button>
     </form>
 
@@ -26,31 +26,28 @@
   </div>
 </template>
 
+
 <script>
 import AuthService from '@/services/AuthService.js';
 
 export default {
   data() {
     return {
-      newPassword: '',
+      email: '',
       message: '',
       error: '',
       loading: false
     };
   },
-  computed: {
-    token() {
-      return this.$route.query.token || '';
-    }
-  },
   methods: {
     async handleSubmit() {
+      console.log("Forgot Password submitted with email:", this.email);
+      this.loading = true;
       this.message = '';
       this.error = '';
-      this.loading = true;
 
-      const trimmedPassword = this.newPassword.trim();
-      const { message, error } = await AuthService.resetPassword(this.token, trimmedPassword);
+      const trimmedEmail = this.email.trim();
+      const { message, error } = await AuthService.sendResetLink(trimmedEmail);
 
       this.message = message || '';
       this.error = error || '';
@@ -62,14 +59,20 @@ export default {
 
 <style scoped>
 .reset-password {
-  max-width: 400px;
-  margin: 80px auto 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+ 
+  font-family: 'Inter', 'Open Sans';
   display: flex;
+  justify-content: center;
+  margin: 70px auto;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
-  height: 400px;
+  text-align: center;
+  color: #000000;
+  background-color: #ffffff;
+  height: 595px;
+  width: 440px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .message {
@@ -91,7 +94,8 @@ button[disabled] {
   color : grey
 }
 .reset-password > img {
-  align-self: flex-start;  /* align logo to left */
+  margin-top:-200px;
+  
 }
 
 .button {
@@ -120,12 +124,11 @@ input[type="email"] {
   padding: 15px;
   margin-top : -55px;
   border: 1px solid #ccc;
+    border: 1px solid #ccc;
+  border-radius: 4px;
   font-size: 1.1rem;
   width: 80%;
 }
 
-label {
-  align-self: flex-start;
-}
 
 </style>
