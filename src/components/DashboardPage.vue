@@ -147,9 +147,6 @@
     </div>
     </div>
 </template>
-
-
-<script>
 export default {
   name: "AttendanceDashboard",
   props: {
@@ -215,9 +212,7 @@ body{
     margin: 0;
     padding: 0;
     background: #FAFBFF;
-    
 }
-
 </style>
 
 <style scope>
