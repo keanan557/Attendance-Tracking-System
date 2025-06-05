@@ -3,25 +3,30 @@
 
     
      <!-- Header Section -->
-      <div class="side-bar">
-        <!-- <header> -->
-            <div class="logo"><img src="/Logo.png" /></div>
+      <!-- <div class="side-bar">
+         <header> -->
+            <!-- <div class="logo"><img src="/Logo.png" /></div> -->
             
-           <div class="user-info">
+           <!-- <div class="user-info">
             <div></div>
-            <img src="/image.png" alt="User's Avatar">
+           
 
-            <span>Tara Snell</span>
+            <span>Tara Snell</span><br>
             <span>Project Manager</span>
 
-        </div>
+        </div> -->
 
         <!-- </header> -->
-    </div>
+    <!-- </div> --> 
 
     <!-- Dashboard Metrics Section -->
      <div class="main-board">
+      <div class="welcome-msg">
         <h2>Welcome Tara 👋🏻</h2>
+
+         <img class="Tara-Pfp" src="/image.png" alt="User's Avatar">
+      </div>
+        
     <section class="metrics">
          
         <div class="metric">
@@ -65,7 +70,11 @@
         <div class="search-contain">
         <h3>Active Employees</h3>
         <div class="search-bar">
-            <input type="text" class="search-box" placeholder="Search">
+          <div class="search-icon-input">
+            <input type="text" class="search-box" placeholder="     Search">
+            <img src="/search 1.png" class="overlay-icon" />
+          </div>
+            
             <select>
                 <option value="newest">Sort by: Onsite</option>
                 <option value="oldest">Sort by: Absent</option>
@@ -117,19 +126,20 @@
           </a>
           <a href="#" @click.prevent="nextPage()">Next</a>
         </nav>
+        
         </div>
 
-      
-
-        <!-- new ends -->
-    </section>
-    <!-- Footer Section -->
-    <footer>
+      <!-- Footer Section -->
+<footer>
         
         <div class="footer-slogan">
             Powered By Life Choices
         </div>
     </footer>
+        <!-- new ends -->
+    </section>
+    
+    
     </div>
     </div>
 </template>
@@ -236,6 +246,7 @@ body{
     margin: 0;
     padding: 0;
     background: #FAFBFF;
+    
 }
 
 </style>
@@ -250,15 +261,41 @@ body{
     gap: 3rem;
    }
 
+   .welcome-msg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px; */
+    /* border: 2px solid blue; */
+   }
+
+   .Tara-Pfp{
+    width: 60px;
+    height: 50px;
+   }
+
    .search-contain{
     display: flex;
     justify-content: space-between;
     align-items:center ;
    }
 
+   .search-icon-input{
+    position: relative;
+    /* border: 2px solid brown; */
+   }
+
+   .overlay-icon{
+    position: absolute;
+    top: 10px;
+    left: 5px;
+   }
+
    .search-box {
-  position: absolute;
-  left: 1000px;
+    /* border: 2px solid brown; */
+  /* position: absolute; */
+  /* left: 1000px; */
+  
   width: 300px;
   height: 33px;
   border-radius: 10px;
@@ -269,13 +306,14 @@ body{
   font-size: 12px;
   line-height: 100%;
   letter-spacing: -0.01em;
-  margin-right: -200px;
-  margin-top: -20px;
+  /* margin-right: -200px; */
+  /* margin-top: -20px; */
+  
 }
 
 select {
-  position: absolute;
-  left: 1360px;
+  /* position: absolute; */
+  /* left: 1360px; */
   width: 120px;
   height: 29px;
   border-radius: 10px;
@@ -286,9 +324,16 @@ select {
   font-size: 12px;
   line-height: 100%;
   letter-spacing: -0.01em;
-  margin-right: -180px;
-  margin-top: -20px;
+  /* margin-right: -180px; */
+  /* margin-top: -20px; */
 
+}
+
+.search-bar{
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-right: 100px;
 }
 
    .metric-info{
@@ -322,16 +367,18 @@ select {
    }
 
    .side-bar{
-    border:2px solid blue;
+    /* border:2px solid blue; */
     background: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 10px;
    }
    .main-board{
-    border:2px solid green;
+    /* border:2px solid green; */
     display: flex;
     flex-direction: column;
+    /* height: 500px; */
     gap: 2rem;
    }
 
@@ -457,7 +504,12 @@ button.offsite {
 }
 
 
-   .footer{
-    border:2px solid orange;
+   footer{
+    /* border:2px solid orange; */
+    text-align: center;
+   }
+
+   .footer-slogan{
+    color: #928282;
    }
 </style>
