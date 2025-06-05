@@ -1,4 +1,6 @@
 <template>
+  <!-- Main container for the entire dashboard layout -->
+
     <div class="dashboard-container">
 
     
@@ -115,8 +117,6 @@
         </div>
 
       
-
-        <!-- new ends -->
     </section>
     <!-- Footer Section -->
     <footer>
@@ -142,37 +142,28 @@ export default {
   },
   data() {
     return {
-      welcomeMessage: "Welcome Eren Yeager 👋",
+      welcomeMessage: "Welcome Er5en Yeager 👋",
       currentPage: 1,
       pageSize: 5,
-      metrics: [
-        { title: "Employees", count: "5,423" },
-        { title: "Inactive", count: "1,893" },
-        { title: "Active Now", count: "189" },
-      ],
-      allEmployees: [
-        { name: "Tarryn Masunda", department: "HR", time: "07:39", email: "tarryn@microsoft.com", id: "545545454", status: "On Site" },
-        { name: "Owethu Sityata", department: "Sales Force", time: "07:39", email: "owethu@yahoo.com", id: "545545454", status: "Off Site" },
-        { name: "Sinovuyo Joe", department: "Administration", time: "07:39", email: "sino@adobe.com", id: "545545454", status: "Off Site" },
-        { name: "Keanan Oliver", department: "HR", time: "07:39", email: "oliver@tesla.com", id: "545545454", status: "On Site" },
-        { name: "Yandisa Khumalo", department: "Team Leader", time: "07:39", email: "yandisa@google.com", id: "545545454", status: "On Site" },
-        { name: "Nandipha Zigwebile", department: "Finance", time: "07:39", email: "nandipha@gmail.com", id: "545545454", status: "On Site" },
-        { name: "Asive Daniel", department: "Team Leader", time: "07:39", email: "asive@microsoft.com", id: "545545454", status: "On Site" },
-        { name: "Tiffany Johnston", department: "Floor Manager", time: "07:39", email: "tiffany@yahoo.com", id: "545545454", status: "On Site" },
-        { name: "Sibabalwe Lingani", department: "Health & Safety", time: "07:39", email: "siba@gmail.com", id: "545545454", status: "Off Site" },
-        { name: "Lebo Mokoena", department: "Customer Service", time: "07:39", email: "lebo@uber.com", id: "545545454", status: "On Site" },
-        { name: "Thabiso Molefe", department: "IT", time: "07:39", email: "thabiso@facebook.com", id: "545545454", status: "On Site" },
-        { name: "Zanele Tshabalala", department: "HR", time: "07:39", email: "zanele@amazon.com", id: "545545454", status: "Off Site" },
-        { name: "Linda Dlamini", department: "Marketing", time: "07:39", email: "linda@nike.com", id: "545545454", status: "On Site" },
-        { name: "Khaya Dube", department: "IT", time: "07:39", email: "khaya@intel.com", id: "545545454", status: "On Site" },
-        { name: "Amanda Cele", department: "Security", time: "07:39", email: "amanda@paypal.com", id: "545545454", status: "Off Site" },
-      ],
-      user: {
-        name: "Yandisa Khumalo",
-        role: "Project Manager",
-      },
+      
+      metrics: [],
+      allEmployees: [],
+      user: {}
     };
   },
+  mounted() {
+    fetch("/employees_data.json")
+      .then(response => response.json())
+      .then(data => {
+        this.metrics = data.metrics;
+        this.allEmployees = data.allEmployees;
+        this.user = data.user;
+      })
+      .catch(error => {
+        console.error("Error fetching JSON:", error);
+      });
+  },
+
   computed: {
     paginatedEmployees() {
       const start = (this.currentPage - 1) * this.pageSize;
@@ -182,33 +173,7 @@ export default {
       return Math.ceil(this.allEmployees.length / this.pageSize);
     },
   },
-  // methods: {
-  //   goToPage(page) {
-  //     if (page >= 1 && page <= this.totalPages) {
-  //       this.currentPage = page;
-  //     }
-  //   },
-//     watch: {
-//   currentPage(newVal) {
-//     console.log("Page changed to:", newVal);
-//   }
-// }
 
-// jk
-
-//     methods: {
-//       paginatedEmployees() {
-//         const start = (this.currentPage - 1) * this.pageSize;
-//         return this.allEmployees.slice(start, start + this.pageSize);
-//     },
-//     nextPage() {
-//       this.goToPage(this.currentPage + 1);
-//     },
-//     prevPage() {
-//       this.goToPage(this.currentPage - 1);
-//     },
-//   },
-// };
 
 methods: {
     goToPage(page) {
