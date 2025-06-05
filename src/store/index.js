@@ -36,7 +36,7 @@ export default createStore({
     /* ADMIN */
     async fetchAdmin({ commit }) {
       try {
-        const response = await fetch("http://localhost:3000/admin");
+        const response = await fetch("http://localhost:3000/");
         if (!response.ok) throw new Error("Failed to fetch Admin");
         const info = await response.json();
         commit("setAdmin", info);
@@ -85,7 +85,7 @@ export default createStore({
      /*STAFF */
     async fetchStaff({ commit }) {
       try {
-        const response = await fetch("http://localhost:3000/users");
+        const response = await fetch("http://localhost:3000/staff");
         if (!response.ok) throw new Error("Failed to fetch staf");
         const info = await response.json();
         commit("setStaff", info);

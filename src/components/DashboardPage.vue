@@ -120,28 +120,26 @@
                 {{ page }}
             </a>
             <a href="#" @click.prevent="nextPage()">Next</a>
-        </nav>
+          </nav>
 
-    </div>
-
-
-</section>
-    <!-- Footer Section -->
-    <footer>
-        
-        <div class="footer-slogan">
-            Powered By Life Choices
         </div>
-    </footer>
-        <!-- new ends -->
 
-    
-    
+
+      </section>
+      <!-- Footer Section -->
+      <footer>
+
+        <div class="footer-slogan">
+            Powered By ILISO
+        </div>
+      </footer>
+      <!-- new ends -->
+
+
+
     </div>
-    </div>
+  </div>
 </template>
-
-
 <script>
 export default {
   name: "AttendanceDashboard",
