@@ -197,6 +197,7 @@
     </div>
   </div>
 </template>
+<script>
 export default {
   name: "AttendanceDashboard",
   props: {
