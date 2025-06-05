@@ -187,7 +187,7 @@
       <footer>
 
         <div class="footer-slogan">
-          Powered By Iliso
+            Powered By ILISO
         </div>
       </footer>
       <!-- new ends -->
@@ -197,9 +197,6 @@
     </div>
   </div>
 </template>
-
-
-<script>
 export default {
   name: "AttendanceDashboard",
   props: {
