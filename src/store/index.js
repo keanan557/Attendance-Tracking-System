@@ -85,7 +85,7 @@ export default createStore({
      /*STAFF */
     async fetchStaff({ commit }) {
       try {
-        const response = await fetch("http://localhost:3000/staff");
+        const response = await fetch("http://localhost:3000/users");
         if (!response.ok) throw new Error("Failed to fetch staf");
         const info = await response.json();
         commit("setStaff", info);
