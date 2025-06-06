@@ -76,7 +76,7 @@ export default {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/reset-password', {
+        const response = await fetch('http://localhost:3000/reset-password?token=${token}', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export default {
           this.error = '';
           // Redirect to login after short delay
           setTimeout(() => {
-            window.location.href = '/login'; // or your actual login path
+            window.location.href = '/'; // or your actual login path
           }, 2000);
         } else {
           this.error = data.message || "Something went wrong.";
