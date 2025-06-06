@@ -1032,5 +1032,6 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
   }
-}
+ 
+ }
 </style>
