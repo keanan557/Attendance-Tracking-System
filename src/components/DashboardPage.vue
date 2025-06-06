@@ -3,58 +3,58 @@
   <div class="dashboard-container">
 
     <!-- Header Section -->
-      
-        <aside class="sidebar expanded">
-          <div class="sidebar-header">
-            <span>
-              <div class="brand"><img src="/Logo.png" alt="Logo"></div>
-            </span>
+
+    <aside class="sidebar expanded">
+      <div class="sidebar-header">
+        <span>
+          <div class="brand"><img src="/Logo.png" alt="Logo"></div>
+        </span>
+      </div>
+
+      <!-- TOP MENU -->
+      <ul class="nav-menu top-menu">
+        <li v-for="menu in topMenus" :key="menu.name" :class="{ active: activeMenu === menu.name }">
+          <button @click="handleMenuClick(menu);" class="nav-link">
+            <box-icon :name="menu.icon" color="white" class="icon" />
+            <span class="tooltip">{{ menu.name }}</span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Spacer -->
+      <div class="flex-spacer"></div>
+
+      <!-- PROFILE DROPDOWN -->
+      <div class="profile-dropdown">
+        <button class="nav-link" @click="showProfileDropdown = !showProfileDropdown">
+          <img src="/image.png" alt="Profile" class="profile-image" />
+          <span class="tooltip"> Tara Snell</span>
+        </button>
+
+        <!-- Profile Dropdown Content -->
+        <div v-show="showProfileDropdown" class="user-info-dropdown">
+          <div class="user-details">
+            <div class="user-title">Project Manager</div>
           </div>
+        </div>
+      </div>
 
-          <!-- TOP MENU -->
-          <ul class="nav-menu top-menu">
-            <li v-for="menu in topMenus" :key="menu.name" :class="{ active: activeMenu === menu.name }">
-              <button @click="handleMenuClick(menu);" class="nav-link">
-                <box-icon :name="menu.icon" color="white" class="icon" />
-                <span class="tooltip">{{ menu.name }}</span>
-              </button>
-            </li>
-          </ul>
-
-          <!-- Spacer -->
-          <div class="flex-spacer"></div>
-
-          <!-- PROFILE DROPDOWN -->
-          <div class="profile-dropdown">
-            <button class="nav-link" @click="showProfileDropdown = !showProfileDropdown">
-              <img src="/image.png" alt="Profile" class="profile-image" />
-              <span class="tooltip"> Tara Snell</span>
-            </button>
-
-            <!-- Profile Dropdown Content -->
-            <div v-show="showProfileDropdown" class="user-info-dropdown">
-              <div class="user-details">
-                <div class="user-title">Project Manager</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Logout Success Modal -->
-          <div v-if="showLogoutModal" class="modal-overlay">
-            <div class="logout-modal">
-              <p>✅ Logged out successfully!</p>
-            </div>
-          </div>
-          <!-- BOTTOM MENU -->
-          <ul class="nav-menu bottom-menu">
-            <li v-for="menu in bottomMenus" :key="menu.name" :class="{ active: activeMenu === menu.name }">
-              <button @click="handleMenuClick(menu)" class="nav-link">
-                <box-icon :name="menu.icon" color="white" class="icon" />
-                <span class="tooltip">{{ menu.name }}</span>
-              </button>
-            </li>
-          </ul>
-        </aside>
+      <!-- Logout Success Modal -->
+      <div v-if="showLogoutModal" class="modal-overlay">
+        <div class="logout-modal">
+          <p>✅ Logged out successfully!</p>
+        </div>
+      </div>
+      <!-- BOTTOM MENU -->
+      <ul class="nav-menu bottom-menu">
+        <li v-for="menu in bottomMenus" :key="menu.name" :class="{ active: activeMenu === menu.name }">
+          <button @click="handleMenuClick(menu)" class="nav-link">
+            <box-icon :name="menu.icon" color="white" class="icon" />
+            <span class="tooltip">{{ menu.name }}</span>
+          </button>
+        </li>
+      </ul>
+    </aside>
 
     <!-- ADD PERSON MODAL -->
     <div v-if="showAddModal" class="modal-overlay">
@@ -68,8 +68,10 @@
         <input type="text" placeholder="Employee ID" />
 
         <!-- Buttons -->
-        <button @click="submitPerson">Submit</button>
-        <button @click="showAddModal = false">Cancel</button>
+        <div class="button-group">
+          <button @click="submitPerson">Submit</button>
+          <button @click="showAddModal = false">Cancel</button>
+        </div>
       </div>
     </div>
 
@@ -125,45 +127,46 @@
           <h3>Active Employees</h3>
           <div class="search-bar">
             <div class="search-icon-input">
-              <input type="text" class="search-box" placeholder="     Search">
+              <input type="text" class="search-box" placeholder="     Search" v-model="searchTerm">
               <img src="/search 1.png" class="overlay-icon" />
             </div>
 
-            <select>
-              <option value="newest">Sort by: Onsite</option>
-              <option value="oldest">Sort by: Absent</option>
+            <select v-model="sortByStatus">
+              <option value="all">Sort by: All</option>
+              <option value="On Site">Sort by: On Site</option>
+              <option value="Off Site">Sort by: Off Site</option>
             </select>
           </div>
         </div>
         <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Employee Name</th>
-              <th>Department</th>
-              <th>Clock In Time</th>
-              <th>Email</th>
-              <th>Employee ID</th>
-              <th>Status</th>
-            </tr>
-          </thead>
+          <table>
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Clock In Time</th>
+                <th>Email</th>
+                <th>Employee ID</th>
+                <th>Status</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr v-for="employee in paginatedEmployees" :key="employee.id + employee.email">
-              <td>{{ employee.name }}</td>
-              <td>{{ employee.department }}</td>
-              <td>{{ employee.time }}</td>
-              <td>{{ employee.email }}</td>
-              <td>{{ employee.id }}</td>
-              <td>
-                <button :class="employee.status === 'On Site' ? 'onsite' : 'offsite'">
-                  {{ employee.status }}
-                </button>
-              </td>
+            <tbody>
+              <tr v-for="employee in paginatedEmployees" :key="employee.id + employee.email">
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.time }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.id }}</td>
+                <td>
+                  <button :class="employee.status === 'On Site' ? 'onsite' : 'offsite'">
+                    {{ employee.status }}
+                  </button>
+                </td>
 
-            </tr>
-          </tbody>
-        </table>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="pagination">
@@ -185,7 +188,7 @@
       <footer>
 
         <div class="footer-slogan">
-            Powered By ILISO
+          Powered By ILISO
         </div>
       </footer>
       <!-- new ends -->
@@ -210,6 +213,8 @@ export default {
       welcomeMessage: "Welcome Er5en Yeager 👋",
       currentPage: 1,
       pageSize: 5,
+      searchTerm: '',
+      sortByStatus: 'all',
       isSidebarCollapsed: true,
       activeMenu: 'Dashboard',
       showProfileDropdown: false,
@@ -242,6 +247,28 @@ export default {
   },
 
   computed: {
+
+    filteredEmployees() {
+      let tempEmployees = this.allEmployees;
+      // Filter by search term
+      if (this.searchTerm) {
+        const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+        tempEmployees = tempEmployees.filter(employee => {
+          // Search across multiple fields: name, department, email, ID
+          return employee.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+            employee.department.toLowerCase().includes(lowerCaseSearchTerm) ||
+            employee.email.toLowerCase().includes(lowerCaseSearchTerm) ||
+            employee.id.toLowerCase().includes(lowerCaseSearchTerm);
+        });
+      }
+      // Filter by status (Onsite/Absent)
+      if (this.sortByStatus !== 'all') {
+        tempEmployees = tempEmployees.filter(employee =>
+          employee.status === this.sortByStatus
+        );
+      }
+      return tempEmployees;
+    },
     TopMenus() {
       return this.isSidebarCollapsed
         ? this.topMenus.filter(menu => menu.name === 'Dashboard')
@@ -250,7 +277,7 @@ export default {
     paginatedEmployees() {
       const start = (this.currentPage - 1) * this.pageSize;
       const end = start + this.pageSize;
-      return this.allEmployees.slice(start, end + this.pageSize);
+      return this.filteredEmployees.slice(start, end + this.pageSize);
     },
     totalPages() {
       return Math.ceil(this.allEmployees.length / this.pageSize);
@@ -386,7 +413,8 @@ select {
 }
 
 .table-container {
-  max-height: 300px; /* adjust this height as needed */
+  max-height: 300px;
+  /* adjust this height as needed */
   overflow-y: auto;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -520,8 +548,7 @@ select {
 .profile-dropdown {
   width: 200px;
   box-sizing: border-box;
-  position: relative;
-  
+
 }
 
 .profile-dropdown .nav-link {
@@ -539,7 +566,7 @@ select {
 }
 
 .profile-dropdown .nav-link:hover {
-  background-color: #00000025;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .profile-dropdown .profile-image {
@@ -548,7 +575,7 @@ select {
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
-  box-shadow: 0 0 4px #00000033;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
 .profile-dropdown .tooltip {
@@ -625,6 +652,13 @@ select {
   outline: none;
   border-color: #004aad;
   box-shadow: 0 0 5px #004aad66;
+}
+
+.modal-content .button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .modal-content button {
