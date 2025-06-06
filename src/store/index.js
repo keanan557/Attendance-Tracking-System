@@ -36,7 +36,7 @@ export default createStore({
     /* ADMIN */
     async fetchAdmin({ commit }) {
       try {
-        const response = await fetch("http://localhost:3000/");
+        const response = await fetch("http://localhost:3000/admin");
         if (!response.ok) throw new Error("Failed to fetch Admin");
         const info = await response.json();
         commit("setAdmin", info);
@@ -44,6 +44,7 @@ export default createStore({
         console.error("Error fetching Admin data:", error);
       }
     },
+
     async deleteAdmin({ dispatch }, admin_id) {
       try {
         await fetch(`http://localhost:3000/admin/${admin_id}`, {
@@ -183,9 +184,8 @@ export default createStore({
     async loginAdmin({ commit }, credentials) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/login",
-          credentials
-        );
+          "http://localhost:3000/login", credentials)
+        ;
         const { token, admin } = response.data;
         localStorage.setItem("token", token);
         commit("setToken", token);
