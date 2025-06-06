@@ -127,7 +127,7 @@
           <h3>Active Employees</h3>
           <div class="search-bar">
             <div class="search-icon-input">
-              <input type="text" class="search-box" placeholder="     Search">
+              <input type="text" class="search-box" placeholder="Search" v-model="searchTerm">
               <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/search%20icon.png" class="overlay-icon" />
             </div>
 
@@ -651,12 +651,47 @@ select {
   box-shadow: 0 0 5px #004aad66;
 }
 
-.modal-content .button-group {
+
+.button-group {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   margin-top: 1rem;
 }
+
+.button-group button {
+  flex: 1;
+  padding: 0.75rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Submit Button */
+.button-group button:first-of-type {
+  background-color: #004aad;
+  color: #fff;
+}
+
+.button-group button:first-of-type:hover {
+  background-color: #003580;
+  transform: translateY(-2px);
+}
+
+/* Cancel Button */
+.button-group button:last-of-type {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.button-group button:last-of-type:hover {
+  background-color: #dcdcdc;
+  transform: translateY(-2px);
+}
+
 
 .modal-content button {
   padding: 0.75rem 1.5rem;

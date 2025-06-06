@@ -160,7 +160,7 @@ export default {
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .input-group {
@@ -198,6 +198,7 @@ export default {
 .remember-me {
   text-align: left;
   font-size: 13px;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   padding-left: 5px;
 }

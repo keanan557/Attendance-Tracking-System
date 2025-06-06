@@ -90,7 +90,7 @@ export default {
           this.error = '';
           // Redirect to login after short delay
           setTimeout(() => {
-            window.location.href = '/'; // or your actual login path
+            window.location.href = '/'; 
           }, 2000);
         } else {
           this.error = data.message || "Something went wrong.";
