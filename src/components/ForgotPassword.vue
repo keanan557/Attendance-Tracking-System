@@ -1,6 +1,7 @@
 <template>
   <div class="forgot-password">
-    <h2>Forgot Password</h2>
+    
+
     <form @submit.prevent="handleSubmit">
       <label for="email">Email:</label>
       <input type="email" v-model="email" required />
@@ -46,11 +47,27 @@ export default {
 </script>
 
 <style scoped>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 .forgot-password {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
+ 
+  font-family: 'Inter', 'Open Sans';
+  display: flex;
+  justify-content: center;
+  margin: 70px auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  background-color: #ffffff;
+  min-height: 430px;
+  width: 440px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
 }
+
 .message {
   color: green;
   margin-top: 10px;
