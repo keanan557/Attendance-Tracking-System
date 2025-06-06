@@ -21,7 +21,7 @@
             type="text"
             id="userId"
             placeholder="Admin ID"
-            v-model="adminId"
+            v-model="email"
             required
           />
         </div>
@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { mapActions } from "vuex";
 
 export default {
@@ -75,7 +74,7 @@ export default {
   data() {
     return {
       // Form data
-      adminId: "",
+      email: "",
       password: "",
       rememberMe: false,
 
@@ -85,30 +84,22 @@ export default {
   },
   methods: {
     // Map Vuex actions to set token and staff details globally
-    ...mapActions(["setToken", "setStaff"]),
-
+    ...mapActions(["loginAdmin"]),
     // Login handler for the form submission
     async handleLogin() {
       this.errorMessage = ''; // Reset error before trying
 
       try {
         // Send login credentials to backend
-        const response = await axios.post("http://localhost:3000/staff", {
-          adminId: this.adminId,
+        await this.loginAdmin({
+          email: this.email,
           password: this.password,
         });
 
-        if (response.data.token) {
-          // Save token to localStorage and Vuex
-          localStorage.setItem('token', response.data.token);
-          this.setToken(response.data.token);
-          this.setStaff(response.data.staff);
-
           // Navigate to home page after short delay
           setTimeout(() => {
-            this.$router.push("/");
+            this.$router.push("/dashboard");
           }, 2000);
-        }
       } catch (error) {
         // Display appropriate error message
         this.errorMessage = error.response?.data?.message || "Invalid ID or password. Please try again.";

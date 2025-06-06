@@ -3,7 +3,6 @@
   <div class="dashboard-container">
 
     <!-- Header Section -->
-    <div class="layout-with-sidebar">
       
         <aside class="sidebar expanded">
           <div class="sidebar-header">
@@ -28,7 +27,7 @@
           <!-- PROFILE DROPDOWN -->
           <div class="profile-dropdown">
             <button class="nav-link" @click="showProfileDropdown = !showProfileDropdown">
-              <img src="/profile.jpg" alt="Profile" class="profile-image" />
+              <img src="/image.png" alt="Profile" class="profile-image" />
               <span class="tooltip"> Tara Snell</span>
             </button>
 
@@ -56,8 +55,6 @@
             </li>
           </ul>
         </aside>
-      
-    </div>
 
     <!-- ADD PERSON MODAL -->
     <div v-if="showAddModal" class="modal-overlay">
@@ -138,6 +135,7 @@
             </select>
           </div>
         </div>
+        <div class="table-container">
         <table>
           <thead>
             <tr>
@@ -151,7 +149,7 @@
           </thead>
 
           <tbody>
-            <tr v-for="(employee, index) in paginatedEmployees" :key="index">
+            <tr v-for="employee in paginatedEmployees" :key="employee.id + employee.email">
               <td>{{ employee.name }}</td>
               <td>{{ employee.department }}</td>
               <td>{{ employee.time }}</td>
@@ -165,8 +163,8 @@
 
             </tr>
           </tbody>
-
         </table>
+        </div>
 
         <div class="pagination">
           <span>Showing data 1 to 8 of 256K entries</span>
@@ -251,7 +249,8 @@ export default {
     },
     paginatedEmployees() {
       const start = (this.currentPage - 1) * this.pageSize;
-      return this.allEmployees.slice(start, start + this.pageSize);
+      const end = start + this.pageSize;
+      return this.allEmployees.slice(start, end + this.pageSize);
     },
     totalPages() {
       return Math.ceil(this.allEmployees.length / this.pageSize);
@@ -386,6 +385,35 @@ select {
 
 }
 
+.table-container {
+  max-height: 300px; /* adjust this height as needed */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+/* Optional: make headers sticky */
+.table-container thead th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 2;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: improve appearance */
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
 
 /* Sidebar */
 .sidebar {
@@ -400,7 +428,7 @@ select {
 
 }
 
-.sidebar-heade .brand {
+.sidebar-header .brand {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -491,25 +519,27 @@ select {
 
 .profile-dropdown {
   width: 200px;
-  margin: 1rem 0;
+  box-sizing: border-box;
+  position: relative;
+  
 }
 
 .profile-dropdown .nav-link {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 25px;
   background: transparent;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 0.4rem 0.6rem;
-  width: 100%;
-  color: #333;
-  font-weight: 600;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
+  box-sizing: border-box;
+  transition: background-color 0.3s;
 }
 
 .profile-dropdown .nav-link:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .profile-dropdown .profile-image {
@@ -517,8 +547,8 @@ select {
   height: 38px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 12px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  margin-right: 10px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
 .profile-dropdown .tooltip {
@@ -528,7 +558,8 @@ select {
 .user-info-dropdown {
   background: white;
   border-radius: 8px;
-  padding: 1rem;
+  margin-top: 10px;
+  padding: 15px;
   box-shadow: 0 0px 12px rgba(0, 0, 0, 0.2);
   width: 180px;
 
