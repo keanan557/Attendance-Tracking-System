@@ -43,9 +43,7 @@
 
 
 
-<script> 
-import AuthService from '@/services/AuthService.js';
-
+<script>
 export default {
   data() {
     return {
@@ -63,25 +61,51 @@ export default {
         return;
       }
 
-      console.log("Password reset submitted");
       this.loading = true;
       this.message = '';
       this.error = '';
 
+      // ✅ Get token from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+
+      if (!token) {
+        this.error = "Missing or invalid token!";
+        this.loading = false;
+        return;
+      }
+
       try {
-        const { message, error } = await AuthService.resetPassword(this.newPassword);
-        this.message = message || '';
-        this.error = error || '';
+        const response = await fetch('http://localhost:3000/reset-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token, newPassword: this.newPassword }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          this.message = data.message;
+          this.error = '';
+          // Redirect to login after short delay
+          setTimeout(() => {
+            window.location.href = '/login'; // or your actual login path
+          }, 2000);
+        } else {
+          this.error = data.message || "Something went wrong.";
+        }
       } catch (err) {
         this.error = "Failed to reset password. Please try again.";
+        console.error(err);
       } finally {
         this.loading = false;
       }
     }
   }
 };
+</script>
 
-</script> <!-- updated script  -->
 
 <style scoped>
 .reset-password {
