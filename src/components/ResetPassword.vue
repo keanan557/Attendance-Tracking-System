@@ -1,5 +1,5 @@
 <template>
-  <div class="forgot-password">
+  <div class="reset-password">
     <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/LC%20logo.png" alt="App Logo">
     <h2>Reset Password</h2>
     <form @submit.prevent="handleSubmit">
@@ -84,7 +84,7 @@ export default {
 </script> <!-- updated script  -->
 
 <style scoped>
-.forgot-password {
+.reset-password {
   font-family: 'Inter', 'Open Sans';
   display: flex;
   justify-content: center;
