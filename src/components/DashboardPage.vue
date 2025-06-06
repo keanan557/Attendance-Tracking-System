@@ -7,7 +7,7 @@
         <aside class="sidebar expanded">
           <div class="sidebar-header">
             <span>
-              <div class="brand"><img src="/Logo.png" alt="Logo"></div>
+              <div class="brand"><img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/iliso%20logo.png" alt="Logo"></div>
             </span>
           </div>
 
@@ -27,7 +27,7 @@
           <!-- PROFILE DROPDOWN -->
           <div class="profile-dropdown">
             <button class="nav-link" @click="showProfileDropdown = !showProfileDropdown">
-              <img src="/image.png" alt="Profile" class="profile-image" />
+              <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/tara%20logo.png" alt="Profile" class="profile-image" />
               <span class="tooltip"> Tara Snell</span>
             </button>
 
@@ -78,7 +78,7 @@
       <div class="welcome-msg">
         <h2>Welcome Tara 👋🏻</h2>
 
-        <img class="Tara-Pfp" src="/image.png" alt="User's Avatar">
+        <img class="Tara-Pfp" src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/tara%20logo.png" alt="User's Avatar">
       </div>
 
       <section class="metrics">
@@ -86,8 +86,8 @@
         <div class="metric">
 
           <div class="image-contain">
-            <img src="/Ellipse 3.png" alt="Inactive">
-            <img src="/profile-tick.png" class="overlay-image" />
+            <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/Ellipse%203.png" alt="Inactive">
+            <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/profile-tick.png" class="overlay-image" />
           </div>
           <div class="metric-info">
             <span>Employees</span>
@@ -96,8 +96,8 @@
         </div>
         <div class="metric">
           <div class="image-contain">
-            <img src="/Ellipse 3.png" alt="Inactive">
-            <img src="/profile-2user.png" class="overlay-image" />
+            <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/Ellipse%203.png" alt="Inactive">
+            <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/profile-2user.png" class="overlay-image" />
           </div>
           <div class="metric-info">
             <span>Inactive</span>
@@ -106,8 +106,8 @@
         </div>
         <div class="metric">
           <div class="image-contain">
-            <img src="/Ellipse 3.png" alt="Active Now">
-            <img src="/monitor.png" class="overlay-image" />
+            <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/Ellipse%203.png" alt="Active Now">
+            <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/monitor.png" class="overlay-image" />
           </div>
 
           <div class="metric-info">
@@ -126,7 +126,7 @@
           <div class="search-bar">
             <div class="search-icon-input">
               <input type="text" class="search-box" placeholder="     Search">
-              <img src="/search 1.png" class="overlay-icon" />
+              <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/search%20icon.png" class="overlay-icon" />
             </div>
 
             <select>
@@ -189,9 +189,6 @@
         </div>
       </footer>
       <!-- new ends -->
-
-
-
     </div>
   </div>
 </template>
