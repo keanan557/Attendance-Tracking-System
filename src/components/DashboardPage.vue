@@ -539,7 +539,7 @@ select {
 }
 
 .profile-dropdown .nav-link:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #00000025;
 }
 
 .profile-dropdown .profile-image {
@@ -548,7 +548,7 @@ select {
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 4px #00000033;
 }
 
 .profile-dropdown .tooltip {

@@ -1,23 +1,38 @@
 <template>
-  <div class="reset-password">
-    <img src="/logo 1.png" alt="App Logo">  <!-- new added code line -->
-    <h2>Password Reset </h2>
+  <div class="forgot-password">
+    <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/LC%20logo.png" alt="App Logo">
+    <h2>Reset Password</h2>
     <form @submit.prevent="handleSubmit">
-        <p class="inspirational-text">
-    Youth is 37% of South Africa... but 100% of its future
-  </p> <!-- new added code line -->
+      <p class="inspirational-text">
+        Youth is 37% of South Africa... but 100% of its future
+      </p>
 
-  <label for="email"></label>
-    <input 
-      type="email" 
-      id="email" 
-      v-model="email"  
-      placeholder="📧    Email"  
+      <div class="password-input">
+        <label for="new-password"></label>
+        <img src="/icon.png" alt="key icon" class="input-icon">
+        <input 
+          type="password" 
+          id="new-password" 
+          v-model="newPassword" 
+          placeholder="      New password"  
+          required 
+        />
+      </div>
 
-      required
-    > <!-- new added code line -->
-      <button type="submit" :disabled="loading" class="button">
-        {{ loading ? 'Resetting...' : 'Send reset link' }}
+      <div class="password-input">
+        <label for="confirm-password"></label>
+        <img src="/icon.png" alt="key icon" class="input-icon">
+        <input 
+          type="password" 
+          id="confirm-password" 
+          v-model="confirmPassword" 
+          placeholder="      Confirm password"  
+          required 
+        />
+      </div>
+
+      <button type="submit" :disabled="loading">
+        {{ loading ? 'Sending...' : 'Submit' }}
       </button>
     </form>
 
@@ -27,13 +42,15 @@
 </template>
 
 
-<script>
+
+<script> 
 import AuthService from '@/services/AuthService.js';
 
 export default {
   data() {
     return {
-      email: '',
+      newPassword: '',
+      confirmPassword: '',
       message: '',
       error: '',
       loading: false
@@ -41,25 +58,33 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log("Forgot Password submitted with email:", this.email);
+      if (this.newPassword !== this.confirmPassword) {
+        this.error = "Passwords do not match!";
+        return;
+      }
+
+      console.log("Password reset submitted");
       this.loading = true;
       this.message = '';
       this.error = '';
 
-      const trimmedEmail = this.email.trim();
-      const { message, error } = await AuthService.sendResetLink(trimmedEmail);
-
-      this.message = message || '';
-      this.error = error || '';
-      this.loading = false;
+      try {
+        const { message, error } = await AuthService.resetPassword(this.newPassword);
+        this.message = message || '';
+        this.error = error || '';
+      } catch (err) {
+        this.error = "Failed to reset password. Please try again.";
+      } finally {
+        this.loading = false;
+      }
     }
   }
 };
-</script>
+
+</script> <!-- updated script  -->
 
 <style scoped>
-.reset-password {
- 
+.forgot-password {
   font-family: 'Inter', 'Open Sans';
   display: flex;
   justify-content: center;
@@ -87,40 +112,51 @@ button[disabled] {
   opacity: 0.6;
   cursor: not-allowed;
 }
-.top-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+
+
+.password-input {
+  position: relative;
 }
 
-.logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 20px;
+  z-index: 1;
 }
-
 
 .inspirational-text{
   color : grey
 }
-.reset-password > img {
-  margin-top:-200px;
+.forgot-password > img {
+  margin-top:-74px;
   
+
+
 }
 
-.button {
-  width: 40%;
-  background-color: #003c8f;
-  color: rgba(255, 255, 255, 0.753);
+button[type="submit"] {
+    width: 200px;
+  height: 46px;
+  cursor: pointer;
+  background-color: #0F4392;
+  color: #fff;
   border: none;
   border-radius: 12px;
-  cursor: pointer;
+  padding: 12px 0;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #002f6c;
+/* Button hover effect: changes background and font color */
+.login-button:hover {
+  background-color: #7DC5F8;
+  color: #000; 
 }
+
 
 form {
   display: flex;
@@ -130,15 +166,13 @@ form {
   gap: 2rem;
   width: 100%;
 }
-
-input[type="email"] {
-  padding: 15px;
-  margin-top : -55px;
+#new-password,
+#confirm-password {
+  width: 100%;
+  padding: 15px 15px 15px 45px;
   border: 1px solid #ccc;
-    border: 1px solid #ccc;
-  border-radius: 4px;
   font-size: 1.1rem;
-  width: 80%;
+  margin-bottom: 10px; 
 }
 
 
