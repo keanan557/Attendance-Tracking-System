@@ -1,5 +1,5 @@
 <template>
-  <div class="reset-password">
+  <div class="forgot-password">
     
 
     <form @submit.prevent="handleSubmit">
@@ -63,7 +63,7 @@ export default {
 
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-.reset-password {
+.forgot-password {
  
   font-family: 'Inter', 'Open Sans';
   display: flex;
