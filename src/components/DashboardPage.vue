@@ -3,13 +3,13 @@
   <div class="dashboard-container">
 
     <!-- Header Section -->
-
-    <aside class="sidebar expanded">
-      <div class="sidebar-header">
-        <span>
-          <div class="brand"><img src="/Logo.png" alt="Logo"></div>
-        </span>
-      </div>
+      
+        <aside class="sidebar expanded">
+          <div class="sidebar-header">
+            <span>
+              <div class="brand"><img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/iliso%20logo.png" alt="Logo"></div>
+            </span>
+          </div>
 
       <!-- TOP MENU -->
       <ul class="nav-menu top-menu">
@@ -24,12 +24,12 @@
       <!-- Spacer -->
       <div class="flex-spacer"></div>
 
-      <!-- PROFILE DROPDOWN -->
-      <div class="profile-dropdown">
-        <button class="nav-link" @click="showProfileDropdown = !showProfileDropdown">
-          <img src="/image.png" alt="Profile" class="profile-image" />
-          <span class="tooltip"> Tara Snell</span>
-        </button>
+          <!-- PROFILE DROPDOWN -->
+          <div class="profile-dropdown">
+            <button class="nav-link" @click="showProfileDropdown = !showProfileDropdown">
+              <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/tara%20logo.png" alt="Profile" class="profile-image" />
+              <span class="tooltip"> Tara Snell</span>
+            </button>
 
         <!-- Profile Dropdown Content -->
         <div v-show="showProfileDropdown" class="user-info-dropdown">
@@ -80,7 +80,7 @@
       <div class="welcome-msg">
         <h2>Welcome Tara 👋🏻</h2>
 
-        <img class="Tara-Pfp" src="/image.png" alt="User's Avatar">
+        <img class="Tara-Pfp" src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/tara%20logo.png" alt="User's Avatar">
       </div>
 
       <section class="metrics">
@@ -88,8 +88,8 @@
         <div class="metric">
 
           <div class="image-contain">
-            <img src="/Ellipse 3.png" alt="Inactive">
-            <img src="/profile-tick.png" class="overlay-image" />
+            <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/Ellipse%203.png" alt="Inactive">
+            <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/profile-tick.png" class="overlay-image" />
           </div>
           <div class="metric-info">
             <span>Employees</span>
@@ -98,8 +98,8 @@
         </div>
         <div class="metric">
           <div class="image-contain">
-            <img src="/Ellipse 3.png" alt="Inactive">
-            <img src="/profile-2user.png" class="overlay-image" />
+            <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/Ellipse%203.png" alt="Inactive">
+            <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/profile-2user.png" class="overlay-image" />
           </div>
           <div class="metric-info">
             <span>Inactive</span>
@@ -108,8 +108,8 @@
         </div>
         <div class="metric">
           <div class="image-contain">
-            <img src="/Ellipse 3.png" alt="Active Now">
-            <img src="/monitor.png" class="overlay-image" />
+            <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/Ellipse%203.png" alt="Active Now">
+            <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/monitor.png" class="overlay-image" />
           </div>
 
           <div class="metric-info">
@@ -127,8 +127,8 @@
           <h3>Active Employees</h3>
           <div class="search-bar">
             <div class="search-icon-input">
-              <input type="text" class="search-box" placeholder="     Search" v-model="searchTerm">
-              <img src="/search 1.png" class="overlay-icon" />
+              <input type="text" class="search-box" placeholder="Search" v-model="searchTerm">
+              <img src="https://github.com/luthandodake10111/iliso--frontend-images-/raw/main/search%20icon.png" class="overlay-icon" />
             </div>
 
             <select v-model="sortByStatus">
@@ -151,22 +151,22 @@
               </tr>
             </thead>
 
-            <tbody>
-              <tr v-for="employee in paginatedEmployees" :key="employee.id + employee.email">
-                <td>{{ employee.name }}</td>
-                <td>{{ employee.department }}</td>
-                <td>{{ employee.time }}</td>
-                <td>{{ employee.email }}</td>
-                <td>{{ employee.id }}</td>
-                <td>
-                  <button :class="employee.status === 'On Site' ? 'onsite' : 'offsite'">
-                    {{ employee.status }}
-                  </button>
-                </td>
+        <tbody>
+          <tr v-for="employee in paginatedEmployees" :key="employee.id + employee.email">
+            <td :data-label="'Employee Name'">{{ employee.name }}</td>
+            <td :data-label="'Department'">{{ employee.department }}</td>
+            <td :data-label="'Clock In Time'">{{ employee.time }}</td>
+            <td :data-label="'Email'">{{ employee.email }}</td>
+            <td :data-label="'Employee ID'">{{ employee.id }}</td>
+            <td :data-label="'Status'">
+              <button :class="employee.status === 'On Site' ? 'onsite' : 'offsite'">
+                {{ employee.status }}
+              </button>
+            </td>
+          </tr>
+      </tbody>
 
-              </tr>
-            </tbody>
-          </table>
+        </table>
         </div>
 
         <div class="pagination">
@@ -192,9 +192,6 @@
         </div>
       </footer>
       <!-- new ends -->
-
-
-
     </div>
   </div>
 </template>
@@ -921,5 +918,154 @@ footer {
 
 .footer-slogan {
   color: #928282;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    gap: 1rem;
+    height: auto;
+    padding: 1rem;
+  }
+  .welcome-msg {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .Tara-Pfp {
+    width: 50px;
+    height: 45px;
+  }
+  .metrics {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .metric {
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+  .active-employees {
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    padding: 1rem;
+  }
+  .search-contain {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .search-bar {
+    flex-direction: column;
+    width: 100%;
+    margin-right: 0;
+    gap: 1rem;
+  }
+  .search-box {
+    width: 100%;
+  }
+  select {
+    width: 100%;
+  }
+  .pagination {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .pagination nav {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  thead .table-container table {
+    font-size: 12px;
+    min-width: 600px;
+  }
+}
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .welcome-msg {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .Tara-Pfp {
+    width: 50px;
+    height: 45px;
+  }
+  .metrics {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .metric {
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+  .search-contain {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .search-bar {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+  .search-box,
+  select {
+    width: 100%;
+  }
+  /* Responsive Table */
+  .active-employees {
+    width: 100%;
+    overflow-x: auto;
+    padding: 1rem;
+  }
+  table {
+    min-width: 100%;
+    border-collapse: collapse;
+  }
+ 
+  @media (max-width: 768px) {
+  thead {
+    display: none;
+  }
+}
+
+  tbody tr {
+    display: block;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 10px;
+    font-size: 14px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #666;
+    min-width: 100px;
+  }
+  .pagination {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .pagination nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 </style>

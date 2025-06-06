@@ -4,7 +4,7 @@
     <!-- Login form card -->
     <form id="login-form" class="login-card" @submit.prevent="handleLogin">
       <div class="top-logo">
-        <img src="#" alt="Logo" class="logo" />
+        <img src="https://raw.githubusercontent.com/luthandodake10111/iliso--frontend-images-/main/LC%20logo.png" alt="Logo" class="logo" />
         <h2 class="title">Log in</h2>
       </div>
 
